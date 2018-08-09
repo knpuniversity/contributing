@@ -149,7 +149,17 @@
             "id": "docs-add-versionadded",
             "name": "Docs: Add versionadded",
             "description": null
+        },
+        {
+            "id": "recipe-copying-recipe-file",
+            "name": "Recipe: Copying recipe file",
+            "description": null
+        },
+        {
+            "id": "recipe-making-recipe-change",
+            "name": "Recipe: Making recipe change",
+            "description": null
         }
     ],
-    "sha": "e9f2e434977b9d9be1e9fb48d91d5e2932d6a049"
+    "sha": "d3baeed6fc9f1df4ea75506ac246e0b7ea20b24b"
 }

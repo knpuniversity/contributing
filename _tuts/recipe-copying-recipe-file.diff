@@ -1,0 +1,16 @@
+diff --git a/recipes/twig/extensions/1.0/config/packages/twig_extensions.yaml b/recipes/twig/extensions/1.0/config/packages/twig_extensions.yaml
+new file mode 100644
+index 0000000..417b7bc
+--- /dev/null
++++ b/recipes/twig/extensions/1.0/config/packages/twig_extensions.yaml
+@@ -0,0 +1,10 @@
++services:
++    _defaults:
++        public: false
++        autowire: true
++        autoconfigure: true
++
++    #Twig\Extensions\ArrayExtension: ~
++    #Twig\Extensions\DateExtension: ~
++    #Twig\Extensions\IntlExtension: ~
++    #Twig\Extensions\TextExtension: ~
