@@ -1,7 +1,7 @@
-diff --git a/docs/security/form_login.rst b/docs/security/form_login.rst
+diff --git a/symfony-docs/security/form_login.rst b/symfony-docs/security/form_login.rst
 index 2984483..cb9f6d0 100644
---- a/docs/security/form_login.rst
-+++ b/docs/security/form_login.rst
+--- a/symfony-docs/security/form_login.rst
++++ b/symfony-docs/security/form_login.rst
 @@ -404,3 +404,22 @@ remove this variable, it's better to use the
  
      // equivalent to:

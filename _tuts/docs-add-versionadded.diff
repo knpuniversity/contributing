@@ -1,7 +1,7 @@
-diff --git a/docs/security/form_login.rst b/docs/security/form_login.rst
+diff --git a/symfony-docs/security/form_login.rst b/symfony-docs/security/form_login.rst
 index cb9f6d0..ee4a1dd 100644
---- a/docs/security/form_login.rst
-+++ b/docs/security/form_login.rst
+--- a/symfony-docs/security/form_login.rst
++++ b/symfony-docs/security/form_login.rst
 @@ -405,6 +405,9 @@ remove this variable, it's better to use the
      // equivalent to:
      // $targetPath = $request->getSession()->get('_security.'.$providerKey.'.target_path');

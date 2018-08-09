@@ -1,8 +1,8 @@
-diff --git a/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml b/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml b/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
 new file mode 100644
 index 0000000..9fbdae0
 --- /dev/null
-+++ b/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
++++ b/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
 @@ -0,0 +1,218 @@
 +<?xml version="1.0" ?>
 +
@@ -222,9 +222,9 @@ index 0000000..9fbdae0
 +        </service>
 +    </services>
 +</container>
-diff --git a/src/Symfony/Bundle/SecurityBundle/Security/.gitignore b/src/Symfony/Bundle/SecurityBundle/Security/.gitignore
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Security/.gitignore b/symfony/src/Symfony/Bundle/SecurityBundle/Security/.gitignore
 new file mode 100644
 index 0000000..e69de29
-diff --git a/src/Symfony/Bundle/SecurityBundle/Tests/Security/.gitignore b/src/Symfony/Bundle/SecurityBundle/Tests/Security/.gitignore
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/.gitignore b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/.gitignore
 new file mode 100644
 index 0000000..e69de29

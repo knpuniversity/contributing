@@ -1,7 +1,7 @@
-diff --git a/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php b/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
 index 64e92f4..2271302 100644
---- a/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
-+++ b/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
+--- a/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
++++ b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
 @@ -3,11 +3,37 @@
  namespace Symfony\Bundle\SecurityBundle\Tests\Security;
  

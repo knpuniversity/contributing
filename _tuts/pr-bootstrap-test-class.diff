@@ -1,8 +1,8 @@
-diff --git a/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php b/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
 new file mode 100644
 index 0000000..64e92f4
 --- /dev/null
-+++ b/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
++++ b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
 @@ -0,0 +1,13 @@
 +<?php
 +

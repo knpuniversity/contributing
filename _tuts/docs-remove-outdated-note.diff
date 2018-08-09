@@ -1,7 +1,7 @@
-diff --git a/docs/security/form_login.rst b/docs/security/form_login.rst
+diff --git a/symfony-docs/security/form_login.rst b/symfony-docs/security/form_login.rst
 index 1269527..2984483 100644
---- a/docs/security/form_login.rst
-+++ b/docs/security/form_login.rst
+--- a/symfony-docs/security/form_login.rst
++++ b/symfony-docs/security/form_login.rst
 @@ -24,13 +24,6 @@ in the session (perhaps the user went directly to the login page), then the user
  is redirected to ``/`` (i.e. the homepage). You can change this behavior in
  several ways.

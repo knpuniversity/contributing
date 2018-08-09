@@ -1,7 +1,7 @@
-diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/symfony/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
 index b71726e..bb5d006 100644
---- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
-+++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+--- a/symfony/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/symfony/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
 @@ -11,6 +11,7 @@
  
  namespace Symfony\Bundle\SecurityBundle\Security;

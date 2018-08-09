@@ -1,7 +1,7 @@
-diff --git a/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml b/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml b/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
 index 9fbdae0..b4a49fc 100644
---- a/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
-+++ b/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
+--- a/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
++++ b/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
 @@ -160,6 +160,12 @@
              <argument />                   <!-- switch_user -->
          </service>

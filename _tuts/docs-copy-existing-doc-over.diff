@@ -1,8 +1,8 @@
-diff --git a/docs/security/form_login.rst b/docs/security/form_login.rst
+diff --git a/symfony-docs/security/form_login.rst b/symfony-docs/security/form_login.rst
 new file mode 100644
 index 0000000..1269527
 --- /dev/null
-+++ b/docs/security/form_login.rst
++++ b/symfony-docs/security/form_login.rst
 @@ -0,0 +1,413 @@
 +.. index::
 +   single: Security; Customizing form login redirect

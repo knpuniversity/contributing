@@ -1,7 +1,7 @@
-diff --git a/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php b/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
+diff --git a/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
 index 2271302..d54f610 100644
---- a/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
-+++ b/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
+--- a/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
++++ b/symfony/src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
 @@ -36,4 +36,4 @@ class TargetPathHelperTest extends TestCase
          $targetPathHelper = new TargetPathHelper($session, $firewallMap, $requestStack);
          $targetPathHelper->savePath('/foo');
