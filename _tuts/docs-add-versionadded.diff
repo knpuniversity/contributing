@@ -1,0 +1,14 @@
+diff --git a/docs/security/form_login.rst b/docs/security/form_login.rst
+index cb9f6d0..ee4a1dd 100644
+--- a/docs/security/form_login.rst
++++ b/docs/security/form_login.rst
+@@ -405,6 +405,9 @@ remove this variable, it's better to use the
+     // equivalent to:
+     // $targetPath = $request->getSession()->get('_security.'.$providerKey.'.target_path');
+ 
++.. versionadded:: 4.2
++    The ``TargetPathHelper`` class was introduced in Symfony 4.2.
++
+ You can also use the ``TargetPathHelper`` service in the same way::
+ 
+     // ... for example: from inside a controller

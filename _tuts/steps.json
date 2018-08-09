@@ -129,7 +129,27 @@
             "id": "pr-fabbot",
             "name": "PR: fabbot",
             "description": null
+        },
+        {
+            "id": "docs-copy-existing-doc-over",
+            "name": "Docs: Copy existing doc over",
+            "description": null
+        },
+        {
+            "id": "docs-remove-outdated-note",
+            "name": "Docs: Remove outdated note",
+            "description": null
+        },
+        {
+            "id": "docs-add-our-new-docs",
+            "name": "Docs: Add our new docs",
+            "description": null
+        },
+        {
+            "id": "docs-add-versionadded",
+            "name": "Docs: Add versionadded",
+            "description": null
         }
     ],
-    "sha": "710aba80f07cdf8d5a05a16b74f02118e5e14ccb"
+    "sha": "36008307dfcf8307af4b259a0ae4eda99c390887"
 }

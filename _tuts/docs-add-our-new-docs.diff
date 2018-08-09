@@ -1,0 +1,27 @@
+diff --git a/docs/security/form_login.rst b/docs/security/form_login.rst
+index 2984483..cb9f6d0 100644
+--- a/docs/security/form_login.rst
++++ b/docs/security/form_login.rst
+@@ -404,3 +404,22 @@ remove this variable, it's better to use the
+ 
+     // equivalent to:
+     // $targetPath = $request->getSession()->get('_security.'.$providerKey.'.target_path');
++
++You can also use the ``TargetPathHelper`` service in the same way::
++
++    // ... for example: from inside a controller
++    use Symfony\Bundle\SecurityBundle\Security\TargetPathHelper;
++    // ...
++
++    public function register(Request $request, TargetPathHelper $targetPathHelper)
++    {
++        // the user clicked to register: save the previous URL
++        if ($request->isMethod('GET') && !$targetPathHelper->getPath()) {
++            // redirect to the Referer, or the homepage if none
++            $target = $request->headers->get('Referer', $this->generateUrl('homepage');
++            $targetPathHelper->savePath($target);
++        }
++
++        // later, after a successful registration POST submit
++        return $this->redirect($targetPathHelper->getPath());
++    }
