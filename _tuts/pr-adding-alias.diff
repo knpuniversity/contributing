@@ -1,0 +1,12 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml b/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
+index b4a49fc..bbd6001 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
++++ b/src/Symfony/Bundle/SecurityBundle/Resources/config/security.xml
+@@ -165,6 +165,7 @@
+             <argument type="service" id="security.firewall.map" />
+             <argument type="service" id="request_stack" />
+         </service>
++        <service id="Symfony\Bundle\SecurityBundle\Security\TargetPathHelper" alias="security.target_path_helper" />
+ 
+         <service id="security.logout_url_generator" class="Symfony\Component\Security\Http\Logout\LogoutUrlGenerator">
+             <argument type="service" id="request_stack" on-invalid="null" />

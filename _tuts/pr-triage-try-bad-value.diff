@@ -1,0 +1,13 @@
+diff --git a/triage_pr_28069/src/Controller/TestingController.php b/triage_pr_28069/src/Controller/TestingController.php
+index 5b7898e..8c0b81a 100644
+--- a/triage_pr_28069/src/Controller/TestingController.php
++++ b/triage_pr_28069/src/Controller/TestingController.php
+@@ -10,7 +10,7 @@ class TestingController
+     public function test(ValidatorInterface $validator)
+     {
+         $myObject = new ClassToValidate();
+-        $myObject->enteredNumber = 10;
++        $myObject->enteredNumber = 9;
+ 
+         $errors = $validator->validate($myObject);
+         var_dump($errors);die;

@@ -1,0 +1,41 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+index b71726e..bb5d006 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -11,6 +11,7 @@
+ 
+ namespace Symfony\Bundle\SecurityBundle\Security;
+ 
++use Symfony\Component\HttpFoundation\RequestStack;
+ use Symfony\Component\HttpFoundation\Session\SessionInterface;
+ use Symfony\Component\Security\Http\Util\TargetPathTrait;
+ 
+@@ -22,10 +23,13 @@ class TargetPathHelper
+ 
+     private $firewallMap;
+ 
+-    public function __construct(SessionInterface $session, FirewallMap $firewallMap)
++    private $requestStack;
++
++    public function __construct(SessionInterface $session, FirewallMap $firewallMap, RequestStack $requestStack)
+     {
+         $this->session = $session;
+         $this->firewallMap = $firewallMap;
++        $this->requestStack = $requestStack;
+     }
+ 
+     /**
+@@ -40,6 +44,12 @@ class TargetPathHelper
+ 
+     private function getProviderKey(): string
+     {
+-        // TODO
++        $firewallConfig = $this->firewallMap->getFirewallConfig($this->requestStack->getMasterRequest());
++
++        if (null === $firewallConfig) {
++            throw new \LogicException('Could not find firewall config for the current request');
++        }
++
++        return $firewallConfig->getName();
+     }
+ }

@@ -1,0 +1,13 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+index b3bf9b4..8c264d6 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
+ use Symfony\Component\HttpFoundation\Session\SessionInterface;
+ use Symfony\Component\Security\Http\Util\TargetPathTrait;
+ 
+-class TargetPathHelper
++final class TargetPathHelper
+ {
+     use TargetPathTrait;
+ 

@@ -1,0 +1,28 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+index 6c6a949..65d1064 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -1,9 +1,23 @@
+ <?php
+ 
++/*
++ * This file is part of the Symfony package.
++ *
++ * (c) Fabien Potencier <fabien@symfony.com>
++ *
++ * For the full copyright and license information, please view the LICENSE
++ * file that was distributed with this source code.
++ */
++
+ namespace Symfony\Bundle\SecurityBundle\Security;
+ 
+ class TargetPathHelper
+ {
++    /**
++     * Sets the target path the user should be redirected to after authentication.
++     *
++     * @param string $uri The URI to set as the target path
++     */
+     public function savePath(string $uri)
+     {
+         

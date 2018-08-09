@@ -1,0 +1,254 @@
+diff --git a/triage_pr_28069/composer.json b/triage_pr_28069/composer.json
+index b33164f..846c75d 100644
+--- a/triage_pr_28069/composer.json
++++ b/triage_pr_28069/composer.json
+@@ -10,6 +10,7 @@
+         "symfony/flex": "^1.0",
+         "symfony/force-lowest": "=4.2",
+         "symfony/framework-bundle": "^4.2",
++        "symfony/validator": "^4.2",
+         "symfony/yaml": "^4.2"
+     },
+     "require-dev": {
+diff --git a/triage_pr_28069/composer.lock b/triage_pr_28069/composer.lock
+index a10bccc..5f65356 100644
+--- a/triage_pr_28069/composer.lock
++++ b/triage_pr_28069/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "be0b7c035c955d086e818e3e8f1c717c",
++    "content-hash": "0184a1e6653984a148db84f7726aff02",
+     "packages": [
+         {
+             "name": "psr/cache",
+@@ -1270,6 +1270,162 @@
+             ],
+             "time": "2018-08-07T09:35:17+00:00"
+         },
++        {
++            "name": "symfony/translation",
++            "version": "dev-master",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/translation.git",
++                "reference": "ac031dd6b5a8a109fbff5cbc7f754f042e35c894"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/translation/zipball/ac031dd6b5a8a109fbff5cbc7f754f042e35c894",
++                "reference": "ac031dd6b5a8a109fbff5cbc7f754f042e35c894",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/polyfill-mbstring": "~1.0"
++            },
++            "conflict": {
++                "symfony/config": "<3.4",
++                "symfony/dependency-injection": "<3.4",
++                "symfony/yaml": "<3.4"
++            },
++            "require-dev": {
++                "psr/log": "~1.0",
++                "symfony/config": "~3.4|~4.0",
++                "symfony/console": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/finder": "~2.8|~3.0|~4.0",
++                "symfony/intl": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0"
++            },
++            "suggest": {
++                "psr/log-implementation": "To use logging capability in translator",
++                "symfony/config": "",
++                "symfony/yaml": ""
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.2-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Translation\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Translation Component",
++            "homepage": "https://symfony.com",
++            "time": "2018-08-08T07:59:30+00:00"
++        },
++        {
++            "name": "symfony/validator",
++            "version": "dev-master",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/validator.git",
++                "reference": "e7ca24e192fe5e36e86e01dde5b9a27b5078594e"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/validator/zipball/e7ca24e192fe5e36e86e01dde5b9a27b5078594e",
++                "reference": "e7ca24e192fe5e36e86e01dde5b9a27b5078594e",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/contracts": "^1.0",
++                "symfony/polyfill-ctype": "~1.8",
++                "symfony/polyfill-mbstring": "~1.0",
++                "symfony/translation": "~3.4|~4.0"
++            },
++            "conflict": {
++                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
++                "symfony/dependency-injection": "<3.4",
++                "symfony/http-kernel": "<3.4",
++                "symfony/intl": "<4.1",
++                "symfony/yaml": "<3.4"
++            },
++            "require-dev": {
++                "doctrine/annotations": "~1.0",
++                "doctrine/cache": "~1.0",
++                "egulias/email-validator": "^1.2.8|~2.0",
++                "symfony/cache": "~3.4|~4.0",
++                "symfony/config": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/expression-language": "~3.4|~4.0",
++                "symfony/http-foundation": "~4.1",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/intl": "~4.1",
++                "symfony/property-access": "~3.4|~4.0",
++                "symfony/var-dumper": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0"
++            },
++            "suggest": {
++                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
++                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
++                "egulias/email-validator": "Strict (RFC compliant) email validation",
++                "psr/cache-implementation": "For using the metadata cache.",
++                "symfony/config": "",
++                "symfony/expression-language": "For using the Expression validator",
++                "symfony/http-foundation": "",
++                "symfony/intl": "",
++                "symfony/property-access": "For accessing properties within comparison constraints",
++                "symfony/yaml": ""
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.2-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Validator\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Validator Component",
++            "homepage": "https://symfony.com",
++            "time": "2018-08-07T09:35:17+00:00"
++        },
+         {
+             "name": "symfony/yaml",
+             "version": "dev-master",
+diff --git a/triage_pr_28069/config/packages/translation.yaml b/triage_pr_28069/config/packages/translation.yaml
+new file mode 100644
+index 0000000..1edfbe2
+--- /dev/null
++++ b/triage_pr_28069/config/packages/translation.yaml
+@@ -0,0 +1,7 @@
++framework:
++    default_locale: '%locale%'
++    translator:
++        paths:
++            - '%kernel.project_dir%/translations'
++        fallbacks:
++            - '%locale%'
+diff --git a/triage_pr_28069/config/packages/validator.yaml b/triage_pr_28069/config/packages/validator.yaml
+new file mode 100644
+index 0000000..a695e1a
+--- /dev/null
++++ b/triage_pr_28069/config/packages/validator.yaml
+@@ -0,0 +1,3 @@
++framework:
++    validation:
++        email_validation_mode: html5
+diff --git a/triage_pr_28069/config/services.yaml b/triage_pr_28069/config/services.yaml
+index 07d653c..776e6ce 100644
+--- a/triage_pr_28069/config/services.yaml
++++ b/triage_pr_28069/config/services.yaml
+@@ -4,6 +4,7 @@
+ # Put parameters here that don't need to change on each machine where the app is deployed
+ # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+ parameters:
++    locale: 'en'
+ 
+ services:
+     # default configuration for services in *this* file
+diff --git a/triage_pr_28069/symfony.lock b/triage_pr_28069/symfony.lock
+index ab36803..8b789e1 100644
+--- a/triage_pr_28069/symfony.lock
++++ b/triage_pr_28069/symfony.lock
+@@ -86,6 +86,24 @@
+             "ref": "4e8335922e9744e9fb1ea43fea12847e6ba78c2a"
+         }
+     },
++    "symfony/translation": {
++        "version": "3.3",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "3.3",
++            "ref": "6bcd6c570c017ea6ae5a7a6a027c929fd3542cd8"
++        }
++    },
++    "symfony/validator": {
++        "version": "4.1",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "master",
++            "version": "4.1",
++            "ref": "0cdc982334f45d554957a6167e030482795bf9d7"
++        }
++    },
+     "symfony/yaml": {
+         "version": "4.2-dev"
+     }
+diff --git a/triage_pr_28069/translations/.gitignore b/triage_pr_28069/translations/.gitignore
+new file mode 100644
+index 0000000..e69de29

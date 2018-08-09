@@ -1,0 +1,41 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+index 41d1e2f..b71726e 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -11,12 +11,23 @@
+ 
+ namespace Symfony\Bundle\SecurityBundle\Security;
+ 
++use Symfony\Component\HttpFoundation\Session\SessionInterface;
+ use Symfony\Component\Security\Http\Util\TargetPathTrait;
+ 
+ class TargetPathHelper
+ {
+     use TargetPathTrait;
+ 
++    private $session;
++
++    private $firewallMap;
++
++    public function __construct(SessionInterface $session, FirewallMap $firewallMap)
++    {
++        $this->session = $session;
++        $this->firewallMap = $firewallMap;
++    }
++
+     /**
+      * Sets the target path the user should be redirected to after authentication.
+      *
+@@ -24,6 +35,11 @@ class TargetPathHelper
+      */
+     public function savePath(string $uri)
+     {
+-        $this->saveTargetPath();
++        $this->saveTargetPath($this->session, $this->getProviderKey(), $uri);
++    }
++
++    private function getProviderKey(): string
++    {
++        // TODO
+     }
+ }

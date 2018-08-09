@@ -1,0 +1,19 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+index bb5d006..b3bf9b4 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -42,6 +42,14 @@ class TargetPathHelper
+         $this->saveTargetPath($this->session, $this->getProviderKey(), $uri);
+     }
+ 
++    /**
++     * Returns the URL (if any) the user visited that forced them to login.
++     */
++    public function getPath(): string
++    {
++        return $this->getTargetPath($this->session, $this->getProviderKey());
++    }
++
+     private function getProviderKey(): string
+     {
+         $firewallConfig = $this->firewallMap->getFirewallConfig($this->requestStack->getMasterRequest());

@@ -1,0 +1,18 @@
+diff --git a/triage_issue_27901/src/Controller/Issue27901Controller.php b/triage_issue_27901/src/Controller/Issue27901Controller.php
+new file mode 100644
+index 0000000..a0c2813
+--- /dev/null
++++ b/triage_issue_27901/src/Controller/Issue27901Controller.php
+@@ -0,0 +1,11 @@
++<?php
++
++namespace App\Controller;
++
++class Issue27901Controller
++{
++    public function test()
++    {
++
++    }
++}
+\ No newline at end of file

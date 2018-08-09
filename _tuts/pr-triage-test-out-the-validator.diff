@@ -1,0 +1,56 @@
+diff --git a/triage_pr_28069/config/routes.yaml b/triage_pr_28069/config/routes.yaml
+index c3283aa..b7496f3 100644
+--- a/triage_pr_28069/config/routes.yaml
++++ b/triage_pr_28069/config/routes.yaml
+@@ -1,3 +1,3 @@
+-#index:
+-#    path: /
+-#    controller: App\Controller\DefaultController::index
++index:
++    path: /
++    controller: App\Controller\TestingController::test
+diff --git a/triage_pr_28069/src/ClassToValidate.php b/triage_pr_28069/src/ClassToValidate.php
+new file mode 100644
+index 0000000..054aa0f
+--- /dev/null
++++ b/triage_pr_28069/src/ClassToValidate.php
+@@ -0,0 +1,14 @@
++<?php
++
++namespace App;
++
++use Symfony\Component\Validator\Constraints as Assert;
++
++class ClassToValidate
++{
++    /**
++     * @Assert\MultipleOf(5)
++     * @Assert\Blank()
++     */
++    public $enteredNumber;
++}
+diff --git a/triage_pr_28069/src/Controller/TestingController.php b/triage_pr_28069/src/Controller/TestingController.php
+new file mode 100644
+index 0000000..5b7898e
+--- /dev/null
++++ b/triage_pr_28069/src/Controller/TestingController.php
+@@ -0,0 +1,18 @@
++<?php
++
++namespace App\Controller;
++
++use App\ClassToValidate;
++use Symfony\Component\Validator\Validator\ValidatorInterface;
++
++class TestingController
++{
++    public function test(ValidatorInterface $validator)
++    {
++        $myObject = new ClassToValidate();
++        $myObject->enteredNumber = 10;
++
++        $errors = $validator->validate($myObject);
++        var_dump($errors);die;
++    }
++}
+\ No newline at end of file

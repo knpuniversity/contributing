@@ -1,0 +1,25 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+index 65d1064..41d1e2f 100644
+--- a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -11,8 +11,12 @@
+ 
+ namespace Symfony\Bundle\SecurityBundle\Security;
+ 
++use Symfony\Component\Security\Http\Util\TargetPathTrait;
++
+ class TargetPathHelper
+ {
++    use TargetPathTrait;
++
+     /**
+      * Sets the target path the user should be redirected to after authentication.
+      *
+@@ -20,6 +24,6 @@ class TargetPathHelper
+      */
+     public function savePath(string $uri)
+     {
+-        
++        $this->saveTargetPath();
+     }
+ }

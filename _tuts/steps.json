@@ -1,0 +1,135 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "pr-triage-start-triage-pr-28069-project",
+            "name": "PR Triage: Start triage_pr_28069 project",
+            "description": null
+        },
+        {
+            "id": "pr-triage-install-validator",
+            "name": "PR Triage: Install validator",
+            "description": null
+        },
+        {
+            "id": "pr-triage-test-out-the-validator",
+            "name": "PR Triage: Test out the validator",
+            "description": null
+        },
+        {
+            "id": "pr-triage-install-annotations",
+            "name": "PR Triage: Install annotations",
+            "description": null
+        },
+        {
+            "id": "pr-triage-try-bad-value",
+            "name": "PR Triage: try bad value",
+            "description": null
+        },
+        {
+            "id": "issue-triage-bootstrap-triage-issue-27901",
+            "name": "Issue Triage: Bootstrap triage_issue_27901",
+            "description": null
+        },
+        {
+            "id": "issue-triage-install-doctrine",
+            "name": "Issue Triage: Install Doctrine",
+            "description": null
+        },
+        {
+            "id": "issue-triage-create-testing-controller",
+            "name": "Issue Triage: Create testing controller",
+            "description": null
+        },
+        {
+            "id": "issue-triage-add-dummy-code",
+            "name": "Issue Triage: Add dummy code",
+            "description": null
+        },
+        {
+            "id": "bug-repro-create-container-bug-reproducer",
+            "name": "Bug Repro: Create container_bug_reproducer",
+            "description": null
+        },
+        {
+            "id": "bug-repro-install-form",
+            "name": "Bug Repro: Install form",
+            "description": null
+        },
+        {
+            "id": "bug-repro-create-repro-code",
+            "name": "Bug Repro: Create repro code",
+            "description": null
+        },
+        {
+            "id": "pr-copy-some-symfony-code-to-our-app",
+            "name": "PR: Copy some Symfony code to our app",
+            "description": null
+        },
+        {
+            "id": "pr-create-new-class-method",
+            "name": "PR: Create new class & method",
+            "description": null
+        },
+        {
+            "id": "pr-add-phpdoc",
+            "name": "PR: Add phpdoc",
+            "description": null
+        },
+        {
+            "id": "pr-use-trait-start-code",
+            "name": "PR: Use trait & start code",
+            "description": null
+        },
+        {
+            "id": "pr-inject-most-deps-call-method",
+            "name": "PR: Inject most deps & call method",
+            "description": null
+        },
+        {
+            "id": "pr-finish-getproviderkey",
+            "name": "PR: Finish getProviderKey()",
+            "description": null
+        },
+        {
+            "id": "pr-add-getpath",
+            "name": "PR: Add getPath()",
+            "description": null
+        },
+        {
+            "id": "pr-add-final",
+            "name": "PR: Add final",
+            "description": null
+        },
+        {
+            "id": "pr-bootstrap-test-class",
+            "name": "PR: Bootstrap test class",
+            "description": null
+        },
+        {
+            "id": "pr-finishing-test",
+            "name": "PR: Finishing test",
+            "description": null
+        },
+        {
+            "id": "pr-adding-service",
+            "name": "PR: Adding service",
+            "description": null
+        },
+        {
+            "id": "pr-adding-alias",
+            "name": "PR: Adding alias",
+            "description": null
+        },
+        {
+            "id": "pr-fabbot",
+            "name": "PR: fabbot",
+            "description": null
+        }
+    ],
+    "sha": "710aba80f07cdf8d5a05a16b74f02118e5e14ccb"
+}

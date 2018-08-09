@@ -1,0 +1,17 @@
+diff --git a/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+new file mode 100644
+index 0000000..6c6a949
+--- /dev/null
++++ b/src/Symfony/Bundle/SecurityBundle/Security/TargetPathHelper.php
+@@ -0,0 +1,11 @@
++<?php
++
++namespace Symfony\Bundle\SecurityBundle\Security;
++
++class TargetPathHelper
++{
++    public function savePath(string $uri)
++    {
++        
++    }
++}
