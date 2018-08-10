@@ -1,1 +1,11 @@
-chapters: []
+chapters:
+    - triaging
+    - pr-reviewing
+    - testing-bug
+    - bug-reproducer
+    - pr-create-class
+    - test-service-config
+    - submitting-pr
+    - documentation-bug
+    - docs-ci-feature
+    - recipes

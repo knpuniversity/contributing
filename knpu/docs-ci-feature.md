@@ -1,0 +1,35 @@
+# Docs Ci Feature
+
+Coming soon...
+
+After waiting about a minute, oh, you'll notice that our continuous integration for our documentation, poor request failed. What does that even mean? How does, how do you test fail for documentation? While the deputation, as you noticed, uses an extension called R s, t that's called a restructured text. It's a markdown like syntax, but with some extra features. These extra features involved the ability to, for example, link I search in here, you can use, there's a little dock and tax. You can actually link to another page and then to actually turn this into html, there's a build process using a python library and ultimately this gets built in html, but if this document we're missing, it would actually fail that build. So what the continuous integration does is actually runs the bill to make sure that all everything is okay. The syntax is good and there are no missing links and if you click to look at it, you'll see we actually have an error. It says security. The rst, 12 slash 69 talk tree contains reference to nonexistent document security slash target path security slash target. Bad is the name of the document that we just removed. This is telling us that there's still a reference to that somewhere else that we need to remove. That's pretty sweet. So let's move back over. 
+
+We'll go to the main security document all the way on the bottom. Twelve 69. It's complaining about. I'm missing reference. You see this thing called a tree. This is an implementation detail of, of restructured tax that deals with how it builds the table of contents, but far versus the point is we need to get rid of security slash target path right here. Then I'm actually going back and get grep that to see if there's anywhere else and oh it looks like the only other thing is something called a redirection map, which is an internal tool to help us manage old urls that had been deleted. So that's not something that we parsed by our library. So you know, and I wouldn't show that. 
+
+Let's add that. And I'm going to use my commit dash dash men because that's not important enough. Change to keep in the history and we'll push that with dash dash force. And hopefully the build will work this time. Okay. Back to the task at hand, which is that we actually want to write documentation for our new pull request, which means we need a documentation per against the master branch. So I'm gonna. Go back to my documentation gifts. They get, check out those be target path helper. Then we're gonna. Make this against based off of origin slash master. 
+
+Perfect. Now I'll move over. 
+
+I'll find the form login key here. You can see our note is still there because it hasn't actually been deleted yet and then all the way to the bottom. Let's start writing our documentation there. Just a few. One of the. If you're not, a lot of people aren't comfortable writing documentation and if you're a non native non native English speaker, you might think that you can't do it, but that's totally not true. The really important thing with documentation is that you write good code examples. So when you think about writing documentation and think about writing code that uses the feature first and then basically just putting that code into the documentation we on the documentation team can help you with rewarding things are improving things to make it better, but the hard work is your job of actually writing the code. So down here I'll say something like, you can also use the target path 
+
+helper 
+
+service in the same way down here, I'm going to start putting a code example now, two things to notice and then I'm just going to paste in some code here on the bottom. Now a couple of things that I want you to notice. 
+
+Yeah, 
+
+and I know this green background is super annoying inside this editor with researchers tax. Whenever you want to surround a technical word, it's always used as two ticks. That's similar to mark down, but mark dental needs is one tick. Second thing is when you want to have a code block that's Php Code You do to Colin's on the previous line, and then you indent to make that because it's not that important. Remember, you're going to find examples everywhere inside of the documentation of what you want to do. The other important note is that you want to create, we want to put as much code as you want to make sure that the code that you put inside of your head as much context as possible. So I've added a note here just to say that this inside of some controller somewhere, I also want to make sure that I have any use statements that are needed for new code, so I don't necessarily need the use statement for the requests because people know what that is, but the target math helper is important, so I need to have a use statement for that. And the other thing that is is that the other thing that we try to do is instead of having lots of text above here talking about what this code is going to do, we'd like to have the code do the work, actually write code down here and put comments inside of the code to add more context. People tend to read the code more than they read the paragraphs 
+
+and that's it. The last we're going to do is because it's a new feature right above it. We're not a special tag called version added four point two because symphony four point two is currently not released. If our feature is merged, it will. It should be in symphony four point two, so I'll add version added and we'll use the language. The target path helper class was introduced in symphony four. Point two. This syntax here is something that's special to restructured text. You can also make a tips and notes like that. It's not that important. Those are things that you'll see in the documentation. Alright, that's it. 
+
+That looks good. 
+
+I had a commit message and then push this up to my remote. Get pushed weaverryan target path helper. Then let's move back and hey, look at our existing pull request has passed, so that's awesome. If you don't see the yellow bar here to create your poll request automatically go back to your fork of it, 
+
+select your branch 
+
+and hit new pull request. 
+
+Okay, 
+
+and this time we're going against the master branch and this is perfect. Two things I'm going to do here is I'm going to prefix this with, this is not that important because the core team will do that. WCM, that counts for it sounds for waiting a code merge. It means our code is not actually merged yet for this. Then I'll just say see symphony slash symphony and the number of our polar class, which is two eight, one eight one. I don't need to say too much more than that because the feature is actually explained to over in that other branch and hopefully that's it. Create the pull request, wait to see the test pass and you're good. You are now a documentation expert and we do hope to see you committing a lots more, a lot more.
