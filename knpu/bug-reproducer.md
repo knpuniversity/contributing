@@ -1,43 +1,117 @@
 # Bug Reproducer
 
-Coming soon...
+Triaging issues and pull requests is seriously, the *best*. But, occasionally,
+*you* might be the person who finds the bug! That happened to me just today, and
+I want to report it!
 
-Usually if you want to help out with symphony, you're going to find an existing bug issue like this and try to create a reproducer, but occasionally you might be the person that thinks that you found a bug in. You need create the issue and to create the best possible issue, you should create a reproducer, a very, very small project that shows that bug being reproduced. I actually just found a bug the other day that seems to affect symphonies and master branch only. I don't have it in front of me, but basically as soon as I tried to use the form system to create a form, I got a really strange bug coming from symphonies container. So let's see if we can start a really small project to reproduce that so that we can create an issue. So since I said that, I think the feature affects the master branch. I'm going to use composer create desk, project symphony slash skeleton with Dev Dash Master, and we'll put this into a new container bug reproducer 
+To make the *best* possible bug report, we should create a "reproducer": a Symfony
+project that reproduces the bug with as *little* code as possible. I don't have
+the error I saw in front of me now, but it was pretty simple: I create a form class,
+tried to use it in my controller, then. I got a *very* strange container cache bug.
 
-directory. 
+## Creating the Reproducer Project
 
-Once that's done, move into that new directory and the one component I know I'm going to need is the form component saw composer require form. Well, I'm waiting for this. Let's actually go back close a couple of files. Go into that new directory and let's see if we can reproduce it. Now, what I was doing was very simple. I created just a new form class, so right in the source directory. For simplicity, I'll create a new php class, all some form type. I'll make an extended normal abstract type and normally I would have a built form Methadone here, but I'm not even sure if I need to do anything with this forum other than just create it, so we'll keep things as simple as possible. And a controller directory our credit, another new PHP class called container test controller, the APP slash controller namespace. Now make public function 
+The bug happened when I was playing with the `master` branch of Symfony. So, let's
+create our new reproducer project based on that:
 
-test. 
+```terminal
+composer create-project symfony/skeleton:dev-master container_bug_reproducer
+```
 
-Now I want to create a new form in here, so I'm going to need to extend abstract controller one, her framework bundle so that I can say form equals this Arrow create form and pass that our forum class, which is going to be some form type calling on class. 
+When that finishes, move into the new directory. The *one* package I know I need
+is `form`. Get it installed:
 
-That's it. 
+```terminal
+composer require form
+```
 
-If I'm right, then the air is actually going to happen right here and I'm not doing anything special at all. So to test this out and we need to do is go and create a route to this. So I'll go with uncomment this out. Again, here we go, set up the url and then back on our on our terminal and install the form. Okay, so we'll run our PHP, dash, dash local Otas, colonate thousand dash t public again, then move over, fine our tablet locals 8,000. Refresh and say hello to my super weird error. Compile error, failed opening required file in some Bar Cash Dev directory. This is related to the container and this is very low level code and you should not be able to trigger this. Now, just to make sure I'm going to go back to my terminal, I'm just going to rm Dash, rf my bar cache directory entirely to make sure that something totally weird didn't happen. I'll rerun the web server and when I refresh. Yep, I get the same exact thing. Okay. Awesome. So I'm gonna take a screenshot of this so that we have it for the issue later 
+While we're waiting for this to finish, go back to PhpStorm, close a few files,
+and go into the new directory. To reproduce my error, I know I need a new form
+class. Right inside `src/`, create a new PHP class: `SomeFormType`. My creativity
+today is *off* the charts. Make this extend the usual `AbstractType`. Normally,
+we would *also* add the `buildForm()` method. But... I'm not even sure that's needed
+to trigger the bug. So, in the spirit of making our reproducer as *small* and
+focused as possible, let's skip it, until we *know* it's needed.
 
-and then go back to and then go back to synchrony repository. Click on symphony, really go to the issues part, click new issue and this is a bug report so we'll get started and it's really nice because it gives you a really nice outline of all the information that you want to do. So symphony affected versions. We're going to say master branch. If we wanted to, we could also check to see if this affects the currently stable branch. That would be a pretty good idea. We he create another reproducer with that and see if it works. My guess is that this is not going to be on the stable branch because this looks like a pretty critical error 
+In the `Controller/` directory, create another new PHP class: 
+`ContainerTestController` in the `App\Controller` namespace. Give it the usual
+`public function test()`.
 
-description 
+Because we need to create a form, extend `AbstractController` from `FrameworkBundle`
+so we have that shortcut. Then, `$form = $this->createForm()` and pass
+`SomeFormType::class`.
 
-when trying to use. Trying to create any form type a strange container, require failure, occurs and here or put in our screenshot and then here's the next part, how to reproduce so I can put the steps and how to reproduce. That's very simple, but instead let's actually push a reproducer Oh and don't forget a title. 
+If I'm right, the error will happen *right* here. To test this, find `routes.yaml`,
+uncomment the route and point the controller to our code.
 
-Um, 
+We're ready! Go back to the terminal and start the built-in web server:
 
-actually use the air here. It's a failed opening required acquired container cache file when it using form system. So to get the reproducer up to get hub control c, let's start a new get repositor right here. We'll add everything. 
+```terminal
+php -S localhost:8000 -t public
+```
 
-Um, 
+Move back, find that browser tab and... refresh! Say hello to the super weird
+error:
 
-if I thought I had what would have been even better for me to make an initial commit when I started the project and then make one clean commit for each of the things I did, like install a form of component and then actually make my test code. Now I'm gonna. Go back to get hub credit, new repository, and we'll call it symphony 
+> Compile error: failed opening required file
 
-container. 
+... in some `var/cache/dev` directory. This is related to the container, and it's
+very low-level code. It's *possible* I'm doing something wrong, but this *really*
+looks like a bug.
 
-How about bog 
+To be sure, let's stop the web server, manually clear the cache directory with:
 
-tanner reproducer? 
+```terminal
+rm -rf var/cache/*
+```
 
-You don't need to put anything special in. It will create the repository. I'll copy these two lines down here for an existing repository, moved back over, push those up, refresh and cool. Here is our reproducer library, so let's copy that. Go over here, give details about how the trigger that air inside of that thing, but just to make sure make things a little simple. I also want to describe what I did inside of that installed. I created a new project from CFA scout and I installed symphony formed headmaster. We decide composer require form, but that project always gets the latest things. Then I'll link to the exact spot where the error happens. I don't have any possible solutions. I don't have any additional context so I don't. 
+restart the server and try it again. Same error. Let's take a screenshot: it's
+*so* useful to be able to see the full stacktrace of an error.
 
-Right? 
+## Opening the Bug Issue
 
-No. The bottom, I'll put a nice message and even for me as a core contributor when I create a poll request or an issue like I'm not sure if this is the real issue. It could still be something that I'm doing wrong, but that's fine. This air is clearly caused me problems and it's confused me and I've done and if it's confused me, it's pro. Even if it is my mistake, somehow it's probably confusing. Other people, there may be some improvement that we need to make. My guess is that this is a bog, but honestly I really don't know for sure. So anyways, let's submit that new issue and there it is out there. It's well documented. It has a real producer. Let's see what happens.
+Go back to the Symfony repository and click to open a new issue. Yep, this is a
+"Bug Report". Ah, this is nice! We already have a nice outline of all the info
+needed. Affected versions: `master`. This *could* be a bug on a stable version,
+and that *is* something we could check. But, since it would be such a critical
+and obvious bug, it's probably not on the stabl eversion.
+
+For description, let's describe what we're trying to do. I'll also upload my
+error. Oh, and I forgot a description: I'll reference part of the error message
+for this.
+
+## Pushing the Reproducer to GitHub
+
+Under "How to Reproduce", ah, *this* is where our issue will *shine*! We need to
+push our test project up to GitHub so we can share it.
+
+Move back to the terminal, stop the web server, then initialize a new Git repository
+with:
+
+```terminal
+git init
+git add .
+git commit
+```
+
+with a message. Next, go to GitHub, click "New", type a name and click "Create Repository".
+Copy the two lines near the bottom for an existing repository. Then, find your
+terminal and... paste!
+
+That's it! Refresh the page on GitHub: here is our simple reproducer app. Copy
+its URL. Then, go back to the issue. Let's mention our reproducer app first and
+how to trigger the error on it.
+
+
+Then, to make life *even* easier, summarize what we did to get the error. As
+extra credit, I'll even link *right* to the line that triggers the error.
+
+And... that's it! I don't have *any* possible solution - this error is way above
+my pay grade. Finish the message and... submit!
+
+We're done! *This* is a bug report worth being proud of.
+
+And, to prove it! I have an update! This issue was fixed less than *3* hours after
+we posted this. That's amazing.
+
+Next, let's jump into how we can contribute *code* to Symfony via a pull request.

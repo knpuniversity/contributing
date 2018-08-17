@@ -1,21 +1,105 @@
-# Triaging
+# Organization & Triaging
 
-Coming soon...
+What could be better than eating ice cream at the beach? Only one thing I can think of:
+eating ice cream at the beach... wait for it... *while* contributing to Symfony!
 
-That guys, Oh and welcome to a special tutorial where I get to talk about something that I just love in that is contributing back to symphony like you guys. I use symphony all the time and when I use it sometimes 
+## The Massive Power of Contributors
 
-sometimes I find things that I don't like or sometimes even bugs and there's nothing more fun for me than actually asking myself, is that something I can improve? Is that something that I can fix? But contributing to symphony can also be challenging. It's a very big project. It's very complex and there are a bunch of things that you need to learn, but I promise you you will not regret. Learning how to contribute to symphony. It's challenging. It's fun and it will definitely make you a better developer and allow you to understand the symphony in a much deeper level. So let's jump in. The main repository for good hub for symphony is under github.com/symphony/symphony. This holds almost all of the symphony libraries that exist. We'll talk about a few libraries later that exist in different repositories and you'll notice that there are 749 issues in 181 poll requests in. This leads me to the very first way to contribute in probably the most important way and also be least thankful and that's called triaging issue and poor request triaging. Basically there are too many issues and too many pull requests for the core team of symphony to be able to respond to and find everything, for example, 
+Seriously, I am *super*, *duper*, double-duper, excited about this tutorial! If you're
+like me, you probably use Symfony almost every day. And that means, we're taking
+advantage of *countless* hours of volunteer work from *thousands* of people! Contributing
+to Symfony is a great way to give *back* and become part of that amazing effort.
 
-so the first thing you can do as a contributor is to find an issue and either give your feedback about it. If it's a feature or if it's a bug, see if you can repeat that bug in as simple way as possible. We're going to actually see this in action. The other thing you can do is triaged a poll request, which basically means reviewing the poll request for pull requests code, giving your opinion on whether or not you think it's a good idea and even trying it to make sure it actually works. Don't be afraid in. One big thing I want to talk about is don't be afraid to give your opinion on an issue or a pull request. Yes, you're. It's possible that it's possible that if you do some code review on a pull request and you might say something that's wrong, that's okay. Honestly, the time that you take to review a request or an issue 
+But, I also have a few other motivations. Like, if you want to *truly* become an
+expert on one part of Symfony, there is *no* better way than reviewing a pull
+request or fixing a bug. Seriously.
 
-is 
+Or, have you ever been annoyed by part of Symfony and wanted to improve it? How
+about this: have you ever been confused, *finally* figured something out, and then
+realized a *small* change to the documentation could have saved you hours of
+frustration?
 
-have super high value and if you say a couple of things that aren't correct, someone else's gonna nicely correct you, you'll learn something and the whole project will move forward simply as truly open source and then does a welcoming 
+*These* are the things that get me excited to contribute back to Symfony! How cool
+is it that *you* could save other people *hundreds* of hours by improving the
+documentation with extra information that the core team didn't realize was missing?
+Symfony is *truly* community-driven. There's actually no official roadmap: if you
+want to add something, do it!
 
-place 
+## The Organization of Symfony
 
-for people to be able to help make issues and code review. So actually the first thing that I want to actually do is code review a pull request that I found. So I'm going to pause. I'm actually going to type the number in here directly. It is two eight, zero six nine. This is a nice example that I found. Darn it. Two, eight zero, six nine. Okay. Check this out. So this introduces a new multiple of constraint which for which checks whether one number is a multiple Aka divisible by some other number. So this is a new validation constraint and by the way, when you're finding issues or pull requests, you might not know how the validator works. So if you want to learn, great. If you don't want to learn and you're an expert on something else, like security, find issues, issues and pull requests for security. 
+Excited? There's just one small problem: contributing... ain't easy! At least,
+not at first. Symfony is a *huge* and complex project. But, you will *not* regret
+learning how to give back. It's fun and will make you an even better developer.
 
-So and as you can see, this pull request has not gotten any action yet. So this is going to be something that we're going to help push forward. So the first night we're gonna do is just give it a nice code review and this is something that you, you might not know what you're looking for when you first start, you'll get better and better at this, but basically you just want to make sure that it makes sense. So whenever you have a validator, you have two classes, you have the class that's used as the annotation, this is called multiple of. And then you have the validator class that goes along with it. And this is the class that actually performs the validation, so you can see here you create a multiple of constraints. The one property which is all which is used as the annotation, the one message on it, it is one option on is called message. With the language. This badge we have multiple off compared value. That's a pretty good message. So I'm going to leave that. Then down here it uses f mod to compare the values. So it's simple. It all looks pretty good to me. 
+Let's jump in! The main repository for Symfony lives at
+https://github.com/symfony/symfony. This holds *almost* all of the Symfony libraries.
+There are a *few* others that live in other places - but we'll talk about those
+later.
 
-And the second thing we're gonna look for is to make sure that it has a test and yeah, it actually has a really nice test what's actually comparing whereas valid comparisons, invalid comparisons and so on. This uses a special base class to help put this all together. But yeah, it has a task. So things look good from this case. Collin, not surprisingly, because I know him, he's a really smart guy. He looks like you did a really good job and if other people and even with even with a simple poll requests like this, the question is does it actually work? It's one thing to look at the code and say it looks pretty good, but it helps so much if we have another community member that says, I actually tried this code in it worked in my project, so let's do that next.
+And, woh! 749 issues and 181 pull requests! That's, ah, a *lot*! And this leads
+me to the *first*, *most* important and *least* celebrated way of contributing:
+triaging! Here's the truth: there are too many issues and too many pull requests
+for the Symfony core team to be able to reply & review everything.
+
+The first way to contribute is to "triage": find an issue and help push it forward.
+If it's a feature idea, you can give your feedback or offer alternate solutions.
+If it's a bug, see if you can replicate that bug. We're going to do this.
+
+You can also triage pull requests: find one, review its code, give your opinion
+on whether or not you think it's a good idea, and even test it in a real project
+to make sure it works. We'll do that too!
+
+Oh, and I recommend focusing on *newer* issues and pull requests, at least at first.
+If a PR or issue is old, it's probably pretty complicated.
+
+## Your Opinion is Respected
+
+If reviewing code or giving your opinion in a big repository like Symfony sounds
+scary, don't worry! Symfony is a friendly place: everyone has the same goal: to
+help move the project forward. Sure, it *is* possible that you'll say something
+that's not completely correct. I do that all the time! I think I'm kinda famous
+for it! It's really no big deal. Honestly, the time that you took to review that
+pull request or issue has a *high* value. And if you say something that isn't totally
+right, someone else will nicely correct you, you'll learn something, and the whole
+project will move forward. Be nice, don't be afraid to be wrong, and use any feedback
+as a way to learn more.
+
+## Reviewing a Pull Request
+
+So, let's start contributing! Let's triage a pull request that I found: - it's number
+[28069](https://github.com/symfony/symfony/pull/28069). This PR is from my friend
+Colin, who's proposing a new `MultipleOf` validation constraint that checks whether
+a submitted value is divisible by another number.
+
+I like this idea, but this PR hasn't gotten *any* attention yet. This is a perfect
+opportunity for us to help push it forward!
+
+First, let's review the code. As a new contributor, you might not really know
+what to look for when reviewing. No problem: just see if the code makes sense and
+look for potential bugs or other issues. You don't have to be perfect: every little
+bit helps.
+
+To create a validator, you need two classes. The first represents the annotation:
+`MultipleOf`. The second - `MultipleOfValidator` - is the class that actually does
+the validation work.
+
+The annotation has an option message:
+
+> The value should be a multiple of {{ compared_value }}
+
+That's a pretty good message. In the validator, Colin uses ``fmod`` to compare the
+values, which means the user can compare decimals - like 1 is a multiple of .5.
+Yea, this all looks pretty good to me!
+
+The second thing to look for is if the PR has a test: *most* features need some.
+And, no surprise, Colin did a great job here too: he's testing valid and invalid
+comparisons. This test uses a special base class to hook this all together.
+
+So... I have *no* comments to add to this pull request! And even *that* is valuable!
+We'll be able to post that we reviewed the code and it looks good to us. But, there
+*is* still one important question: does this... *actually* work? It's one thing to
+look at the code, but it helps *so* much if someone in the community says:
+
+> Hey! I actually *tried* this in a real project and it works great!
+
+Let's *be* that wonderful person next!

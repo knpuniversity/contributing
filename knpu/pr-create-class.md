@@ -1,43 +1,138 @@
-# Pr Create Class
+# Coding a new Feature
 
-Coming soon...
+We've just created a new branch based off of Symfony's `master` branch. And now,
+we're ready to create our new `TargetPathHelper` class. But... where should it live?
+It's related to Security... which means it could either live in the Security component,
+or SecurityBundle.
 
-You've already helped along and issue a part of class and even opened up our own really good issue, but of course the biggest thing you can do a symphony is actually make a pull request maybe to fix some bug you found or some feature. Let's look at an existing issue. Its number is 27, eight, eight, three five. This comes from the security components, so you may or may not be familiar with that basically. 
+## Components Versus Bundles
 
-Okay. 
+As a general rule, most code should live in a component so it's reusable even
+outside of Symfony. But, sometimes, you'll write code that's *really* integrated
+with Symfony. And that will live in the bundle. Don't over-think it too much:
+it'll usually become pretty obvious if you put something in the wrong spot.
 
-Whenever you try to access a protected page as an anonymous user, if you're not logged in the you or are you try to go do a save to a key in the session and then you're redirected to the login page. Then after you log in, that key is read from the session and you're redirected back there. Sometimes it can be useful for you to manually set, uh, you were out into that session key. And to help with that symphony has a treat called target pap trait. 
+Press Shift+Shift and search for a file that is closely related to our new feature:
+``TargetPathTrait``. Ok, this lives in the Security component. I'll double click
+on the directory to move here. At first, it seems like ``TargetPathHelper`` should
+live here. And that's where *I* would put it at first. I say "at first" because,
+if you started coding, you'd notice a problem.
 
-Okay? 
+This class will *ultimately* use the `FirewallMap` class internally to do its
+work. There are *two* `FirwallMap` classes: one lives in the Security component,
+and the other lives in SecurityBundle. After digging a little bit, you'd find out
+that *we* will need to use the one from SecurityBundle.
 
-That helps you. It gives you a method called save target path. You basically give it to you or I that you want to store in the session. In this store is at any various in the, in this specific session key, that's where symphony looks later to read that key. The problem is that this user wants to set that value from a controller, 
+And here's why that's important: a class in a component *can* depend on classes
+from other components. But, it can *never* depend on a class from a *bundle*.
+Because our new ``TargetPathHelper`` depends on a class from SecurityBundle, it
+*can't* live in the component: it must live in the bundle.
 
-but 
+If you get this wrong, no big deal: someone will help you out on your pull request.
 
-that's fine, except he noticed that this has this thing called the provider key. That's actually the name of your firewall, which if you want, you can just hard code. If you have multiple firewalls, it's better to actually detect which firewall is being created, which firewall you're currently using. Anyways, in a recent version of symphony, this firewall can fig feature was added where you can use a service called firewall map called get firewall, config pass the request call, get named, and you get your firewall name. The problem is that the firewall map is not actually something that you can auto wire and one of our core contributors gives a reason behind that. Down here you couldn't make this service auto wire by adding this alias, but it's probably not something we should do. And Stephanie Court. So I was thinking about this problem and I thought, what if we, in addition to the target path trade added a new class called target pap helper that you could use to easily save or get the target path without needing to use the private provider key. We'd be able to do this because we could inject the firewall map into that new class so at the end user can just use our new class and not have to worry about anything else. If you're not completely following me yet, don't worry. The important thing is the process we're going to go through to create this. So 
+Go find SecurityBundle and look inside ``Security``. Hey! Here are the ``FirewallMap``
+and ``FirewallConfig`` classes we'll be using! That *probably* means this directory
+is a great spot: create the new PHP class: ``TargetPathHelper``. Add our first
+public function, how about just ``savePath()`` with a string `$uri` argument.
 
-in order to create this, I'm going to go over Petri storm and actually move into the symphony director, Dri directly that we've been working on. Then I'm gonna go over my tab where I have symphony open and right now we're still on the French from Collin Odell before. I'm going to make sure that I'm up to date by saying get back to origin. Then when I create a new branch with get checkout Dash B, 
+Symfony 4.0 and above requires PHP 7.1, so you *should* use scalar type-hints
+and return types. But, Symfony does *not* use the ``void`` return type.
 
-target path helper origin master. So I'm creating a new branch based off of symphonies master branch. Now. Well, this is actually important. Whenever you make a pull request, you're either adding a feature or fixing a bug. If you're adding a feature, you should always make it against the master branch, then it will be included in the next symphony minor released in this case in symphony four point two. But if you're fixing a bug, you should fix that in the oldest supported branch. So for example, if you found a bug that was introduced in symphony three point four, you don't want to create your branch based off of origin slash three point four. 
+## All About PHPDoc
 
-Okay? 
+Because this is a public function, we should add some PPH doc to describe it.
+Add a clear, but short description above this. In general, Symfony does *not*
+have a lot of PHPDoc: we don't want to maintain too much documentation inside
+the code - there's a separate repository for documentation.
 
-Now the only tricky part about that is, for example, if a bug we're introduced in symphony three point two, you wouldn't actually make the pull request against the three point two branch because three point two is no longer supportive to help with this. You can go to Sydney.com/roadmap. So if you discovered there was a bug that was introduced to simply write down here, you can see that the only supportive branches right now are two point eight, three point four and four point one. So very simply you'll find if a bug was introduced in three point two, it means just fix it in three point four, a bug when it was introduced in two point seven, you fix it in two point eight. Anyways, in this case, we want to create our new branch off of origin master. Perfect. All right. The next question is where should this new target pap helper class live? If I do shifts shifts and do target path trait, you can see that this lives inside of the security component. I'll double click on the directory to move to it. Now the target pad helper actually needs to live instead in security bundle, and this is a subtle issue and if you started coding you wouldn't realize it. The problem and the reason 
+And, thanks to the `string` type-hint, the `@param` documentation is totally redundant
+and should be removed... *unless* it's valuable to add more information about it.
+I'll do that... even though it doesn't add a *lot* of extra context.
 
-is that the firewall math class that we want is actually a class that comes from the security bundle. So because our new classes going to use a classroom security bundle, it needs to live in the security bundle classes in anything instead of a component can only rely on other component classes, not other classes in a bundle. So I'm going to go into bundle security bundle and we'll open up security and yeah, actually there's a firewall map and firewalking fit class. They were seeing still quite a new php class called firewall called target path helper. And then to start we'll do public function and let's just call the methods save path and here's how I want it to work. I want to be able to pass the Uri and it will say that automatically into the correct session to eat in. If you're making a poor custom master branch and the massive branch does support species, it's lowest php version seven point one. So you can and should use scalar type events. However, we do not use the void of return type at at this time. Of course, since this is a new public function, we should add some page for documentation to describe what it does. So I'll say, so that's the target path the user should be redirected to after authentication. 
+Also *every* PHP file in Symfony should have a copyright header on top. Go copy
+that and paste it here. Don't worry too much about these details: it's easy to add
+them later if you forget.
 
-Now one thing is the Symphony Korea find is that we don't actually have a lot of peachtree documentation because we don't want to maintain having too much documentation right inside of the code. So because I had a string type and here it's actually redundant heavy APP program and a lot of cases they'll remove it. Now I'm going to keep it because I actually want to add a little bit more information here and say that you were I to set as the target path, but even that is debatable. That's a pretty obvious description. So if I don't want this description, I would actually remove the APP ram entirely. By the way, those are details not to worry too much about because someone will help you out on your pull request if you do something that's not exactly to the standard. The other thing that you'll have at the top of every single class in a simply is the copyright header. So I'll put that on top and we are ready to go. Okay. So we ultimately behind the scenes to make our job easier, I'm actually going to use this target path trait from inside of our new target path helper. So I'll say use target path trait, and then inside safe path we're ultimately going to call save target path. And here's the tricky thing, we need to pass 
+## Injecting the Services we Need
 
-three different arguments, the session to provider key, which is the fire walkie and the Uri. Now we know that to get the provider key, we can use this firewall service. So this means that we need the session and the firewall map to be injected as constructor arguments. So I'll type in session interface session firewall map, and those are two firewall maps. This is pretty common. We want the one from security fundal. And the reason is that if you open the firewall map from security bundle, it actually contains this get firewalking fig method. It 
+To make our job easier, use the `TargetPathTrait` on top of the class. Then all
+*we* need to do is say `$this->saveTargetPath()`.
 
-no, I'm not going to that. 
+But... hmm... this needs 3 arguments: the session, provider key - which is the
+firewall name - and the URI. We know that we can get the firewall name by using
+the ``FirewallMap`` service. This means that we need the `Session` and the
+`FirewallMap` to be injected as constructor arguments. Add `SessionInterface $session`
+ and `FirewallMap` - the one from SecurityBundle - `$firewall`.
+ 
+ I'll press Alt+Enter and select initialize fields to create those properties and
+ set them. Make sure to remove the PHPDoc above each property: this is redundant
+ thanks to the constructor type-hints.
 
-That's the one actually used inside of symphony. Then I'll hit alt enter to initialize those two fields and we do not need the APP bar above each property because that is, that is obvious based on the constructor. Now, to calculate the provider key that we want, I'm going to create a new private function called get provider key and it's going to return a string and I'm just going to put for now a little to do there. And in say target path, we can now pass this, this era session, this Arrow get provider key and the Uri. Awesome. In this case, I'm on key provider. Can you notice I'm not using the peach documentation? That's for two reasons. One, this is a private function, so we don't typically document those. And the second thing is we already have the return type right here, so don't need to duplicate that above. 
+To calculate the provider key, create a new private function: `getProviderKey`
+that will return a string. For now, just put a TODO.
 
-Alright, finally, let's fill in this gift provider key and to do that you can see we can call them at that on a firewall map called get firewall config. Pass the request and getting it. So I'm first going to say firewall config equals this Arrow firewall map, carol, get firewalking fig. Now the tricky part here is that we actually need to request object, which we don't currently have inside of this class. So that's not a problem. To get that, we're actually going to dependency and Jackie beat request stack. I'll hit enter again to make that another argument. Queen things up and there we go and pass it down here. Now normally when you use the request back, you said this air request dot get your get current request. In this case, the firewall symphonies security firewall only operates on the outer master request. So I think we actually want to hear is called get mastery request. I'm not actually 100 percent sure about that. That's a small detail, but that's okay. Putting up on and pull request is going to give people the opportunity to comment on that. All right. If you look at get firewall config, it's actually possible for this to return. No, we need a code for that. So if not equals a firewall config can be this Yoda conditional here. We have this backwards. That's another symphony coding standard, but if you get, if you don't know that seriously, not a problem, we'll say throw new logic. Exception doesn't really matter which class one exception you throw. If somebody wants a different one, I'll tell you, 
+Back up in `setTargetPath()`, pass `$this->session`, `$this->getProviderKey()`
+and the `$uri`.
 
-I'm gonna. Say I could not find firewall config for the current request and finally at the bottom we'll return firewalking fig Arrow, get name and that should be yet. While we're here, let's add one more function called yet path that will return a string in here. We'll return this Arrow, get target path, this era session, this Arrow get provider key to fill in those two arguments. In this case, I am in Ad Petri documentation. I'm not going to have the return string that's redundant, but I am going to say turns the url if any the user visited that forced them to log in. 
+Awesome! Look back at `getProviderKey()`. Did you notice? I'm not using PHP documentation?
+That's for two reasons. First, this is a private function, and those are typically
+*not* documented inside Symfony. And second, we already have the return type, so
+there's no reason to duplicate that.
 
-Hmm. 
+Finally, let's fill in this function! To get the firewall name, we use the FirewallMap,
+call `getFirewallConfig()` on that and pass it the request. Let's do that here:
+`$firewallConfig = $this->firewallMap->getFirewallConfig()`. But, hmm, now we need
+the Request object... and we don't have that. No problem: add a third constructor
+arg: `RequestStack $requestStack`. I'll hit alt+Enter again to create that property
+and set it. Clean off the PHPDoc, then head back down.
 
-I'll put a period on the end of that as we usually do and descriptions. All right. The last thing I'm gonna do with this class, we still have a couple more steps to do like writing the test and adding this as a service. The last thing I do with this class is actually add a final key word. That final keyword means that no one is allowed to subclass this, and by default in this is typically something that we want in symphony because helps protect it helps make supporting backwards compatibility easier in the future by knowing that no one is subclass in this, we can change certain functions in it without breaking backwards compatibility. Now, if there is a legitimate use case for some of the subclasses, then you don't need final finals. A good default to have because we can always remove it later. All right, next, let's actually write a test for this class. Get symphonies tests running, and then it makes sure that this is registered as a as a service. Then we'll make our very first poor quest.
+Normally, when you use the RequestStack, you call its `getCurrentRequest()` method
+to get the request. But, in this case, I'm going to use another method:
+`$this->requestStack->getMasterRequest()`. I'm not 100% sure this is correct.
+The whole topic of requests and sub-requests is pretty complex. But, essentially,
+Symfony's security firewall only operates on the outer, "master" request. So,
+to find the active firewall, that's what we should use. If I'm wrong, hopefully
+someone will tell me on the pull request.
+
+Next, if you look at the `getFirewallConfig()` method it's possible that this would
+return null. Code for that: if `null === $firewalllConfig`. This is another Symfony
+coding standard - backwards if statements known as Yoda conditionals! But, don't
+worry too much about coding standards - Symfony has a magic way of fixing them
+that we'll see later.
+
+Inside, if there's no firewall config for some reason, throw a new `LogicException`
+with as clear a message as possible. Why a LogicException? Well, it seems to make
+sense - something went wrong logically. And... usually, the exact exception class
+won't matter. But sometimes, there *will* be a specific exception class you should
+throw. If you're not sure, don't worry: this is *another* spot where someone reviewing
+your PR can help.
+
+Finally, at the bottom, `$firewallConfig->getName()`.
+
+And that should be it!
+
+While we're here, let's add one more function: `getPath()` that will return a
+string. Inside, return `$this->getTargetPath()` with `$this->session` and
+`$this->getProviderKey()`. This time, I *will* add some PHPDoc. I don't need
+`@return` - that's redundant - but I will add a description about what this method
+does.
+
+## Making the Class final
+
+Hey, we're done! Yea, we still need to write a test & add some config to register
+this as a service: we'll do that next. But, this class should work!
+
+However... I'm going to make *one*, ahem, final change: add `final`.
+
+Making this class final means that nobody is allowed to subclass it. Why are we
+doing this? Because, in the future, if the class is `final`, it will be easier
+to make changes to it without breaking backwards compatibility. Basically, if you
+*allow* a class to be sub-classes, you have to be a bit more careful when making
+certain changes. Making classes `final` is a good "default" for new Symfony classes.
+
+Of course, if there is a legitimate use-case for some to sub-class this, then you
+don't *need* to make it final. But, while we can easily *remove* `final` later,
+we can't *add* `final` in the future, at least not without jumping through a few
+extra hoops to avoid breaking backwards compatibility.
+
+Ok, let's get to the config & test!

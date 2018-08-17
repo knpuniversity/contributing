@@ -1,8 +1,10 @@
 chapters:
     - triaging
     - pr-reviewing
+    - pr-link-symfony
     - testing-bug
     - bug-reproducer
+    - symfony-branches
     - pr-create-class
     - test-service-config
     - submitting-pr

@@ -1,27 +1,145 @@
-# Test Service Config
+# Writing Tests & Service Config
 
-Coming soon...
+When you make a pull request to Symfony, you *almost* always need at least one
+test. And... yea... we definitely need a test for our new `TargetPathHelper`.
 
-Of course, when you make a prayer request to symphony the, you almost always need a test. All symphony is a heavily tested library to guarantee quality, so we're definitely gonna need a test for this new target path helper, but how do we run the symphony tests? Well, I'm happy to report this is a super smooth process inside of the go to your terminal that's in the. If you look inside of your Sydney directory, it has a composer that Jason, this actually describes all the libraries. That symphony itself depends on in order to function, in order to run the 
+But, before we start writing it... shouldn't we figure out how to *run* Symfony's
+test suite first? Yep! And I'm *super* happy to report that it's *quite* easy.
 
-tests, 
+## Getting Symfony's Dependencies
 
-to run the test, go and say, start first, run composer update. One important thing here is that you'll notice there's not a composer dot lock file inside the repository. That's a common practice for libraries. They commit the composed that Jason Bio, but they don't commit the composers that lock file. That's different than applications. So before you run your tests, you want to make sure run composer update so that it reads the compose that Jason File in Dallas. Dependencies. Sure, you could run composer install because there's no lock file, so it would do the same thing, but in case in case there was a composer of that locked file because you had already run composer update before, but by running composer update, it makes sure that we always get the latest stuff. Even if we have a composer dot lock file already from having previously run this command because you'll see when this finishes. Yeah, now we do have a composer dot lock file. All right, turn the test. It is that slash php unit. That's it. This is a wrapper around symphony that helps them make helps. Make sure you have the stuff that you need, balance some other dependencies and do a different directory. 
+Look in the `symfony/` directory. It has a `composer.json` file that describes
+all of the libraries that Symfony *itself* needs in order to work and in order
+to run its tests. 
 
-There's one time and then starts running your tests. There are a lot of tests, so I'm actually going to control seed this. I usually don't run all the tests locally. As you'll see in a few minutes. Symphony has continuous integration, so once you make your poll request, it will run all the tests, but it is really convenient because we can target the specific directory that we want. So let's run all the tests from security bundle. 
+Move over to your terminal and run:
 
-If you don't fast forward, like I didn't, you might see a couple of it might take a minute or two and everything passes. There are a couple skipped tests. That's probably because our local computer lacks some php extension or other other thing that those tests need to run, nothing to worry about. So now we can add our test to actually make sure things work. Alright. So let's go back into our security bundle, a double click into it. Since we want to test the target path. Halbert trait will go into tests security and create a new php class called target path help or test. This will extend the normal symphony, the normal test case from PHP unit. Well, they'll say a public function test save path for the body of this test. Since this is not a testing tutorial, actually going to paste in some code that I have and then auto complete. A few use statements like the firewall map from security bundle to finish our test firewall config is the last one. 
+```terminal
+composer update
+```
 
-Oh, 
+There's one important difference between a reusable library like Symfony and a
+normal application: Symfony does *not* have a `composer.lock` file! We commit
+the `composer.json` file to Symfony, but we do *not* commit `composer.lock`. Why
+not? Well, there's just no point. Individual apps that require Symfony will lock
+Symfony at some version in *their* app. But, when we're working on Symfony itself,
+we usually want the *latest* version of all of our dependencies.
 
-and target half helper. The target helper upperclass doesn't really do anything, it just all flows most of the work to a trait, so what this test effectively does is create several different mocks. It creates a firewall config that returns a firewall name as the firewall name, and then ultimately make sure that this special key is what is set to this special keys in on the session is set to the url that we passed the safe path. If you want to understand this better, look into it further, but this is no different than a unit test that you had created for your code because you have a test. Have nothing to do with the framework. We're just testing a class at a very low level. It's make sure as fast as let's go back and actually target this class directly and awesome. It works 
+So before you run your tests, make sure to run `composer update`. Running
+`composer install` isn't good enough, because there could already be a `composer.lock`
+file from an *earlier* time you ran `composer install`. Running install makes
+sure you're up to date.
 
-this point. We have a fully functional target path helper class, but if someone uses the security bundle, this is not yet registered as a service. They would have to register themselves. We want to do that for them. So if you look in security, bundled dependency injection security extension, you'll see that this class loads a number of xml files which add all of the services for this bundle. And if you look in the resources config directory and open security that xml around lines 136, you start saying these security firewall map, that's the class, that's the service we depend on. And the firewall config, another class we depend on. So one of the questions is which xml files most appropriate for our new target bath helper. Since it relates to the firewall map and the firewall config, I think that this file's probably most important, but somebody can always tell us that we're wrong later. So let's create a new service for the ID. Let's give it security, that target path to treat. And for the name I'm just trying my best to follow existing a naming conventions inside of here. Oh, not target draft trait, but target path 
+Perfect - *now* we *do* have a `composer.lock` file.
 
-helper so that the class to target for the class. I'll cheat paste part of the previous one as a target path helper. Then inside of here we're going to need three different arguments, the session firewall map and request ACC, so we'll say argument type equals service ID equals session. By the way, even though I'm inside of the Symphony Library itself, I'm actually going to go into my settings search for symphony and enable the plugin for this project. That's actually going to give me a little bit of help here. Or maybe not. Nevermind that argument type equals service ID equals in this case we need the firewall map. So that is this id up here, security that firewall, that map. And the last thing is we need argument type equals service ID equals request stack and that should be it. Now we've registered as a service, but there's still one piece missing and that is that in order for our secure target path helper to be Ottawa, Arabelle like as an argument here, we need to add an alias from that class to the service ID is similar to the example given down here for the firewall map. 
+## Running Symfony's Test Suite
 
-So the way this is done is by saying service ID equals and the way you use the full long class into our library. And I'll say ID equals. 
+Ok, we're ready to run the tests! Do it with:
 
-Oh, 
+```terminal
+./phpunit
+```
 
-and they'll say alias equals copy the ID name, service ID, and that's it. So now the target by the helper should be auto Arabelle in any way, shape, or form. And that's it. We've created the class, we've created the task, we've registered as a service, we've given an Ottawa alias. Our pull request is ready. Now, the one thing that I would recommend during the I am not going to do, because we already talked about how to do it earlier, is too great a new symphony project. Poll our patch into that symphony project and actually test to make sure this stuff really works. Our classes tested, our class does have a test, but that doesn't always mean that there's not a bug in there. And our service configuration actually isn't tested. So if there's a bug in here, it wouldn't be very obvious at all saying that you actually tried your patch in a real project, goes a long way to helping your poor quest to get merged. So next, let's actually commit this and get it up to get hub at a poll request and hope the best.
+That's it. This is a wrapper around PHPUnit: it downloads some dependencies to
+a different directory, then... starts running the tests! Andy... yea... there are
+a lot of tests. I'm going to stop these by pressing Ctrl+C.
+
+## Running only Some Tests
+
+To be honest, I *never* run the full test suite locally. You just don't need to!
+As you'll see in a few minutes, Symfony has a robust continuous integration setup:
+when you make a pull request, Symfony's test suite is executed automatically.
+
+Thanks to that, locally, I usually just run the tests I'm working on. Let's run
+everything from SecurityBundle:
+
+```terminal
+./phpunit src/Symfony/Bundle/SecurityBundle
+```
+
+This time... if you didn't fast forward like me... you'd see that these tests only
+take a minute or two. There *are* a few "skipped" tests: that's probably no something
+you need to worry about. Some tests require a special PHP extension or other service
+that your local computer might not have. So, those tests are skipped. No big deal.
+
+## Adding our Test
+
+Now that the tests are running, it's time to add our test! I'll double-click to
+get back into the SecurityBundle. Because we want to test `TargetPathHelper`, the
+test should live in `tests/Security`. Create a new PHP class called
+`TargetPathHelperTest`. Make this extend the normal `TestCase` from PHPUnit. Then
+add `public function testSavePath()`.
+
+For the body of the test... yea... I'm going to cheat. This isn't a testing tutorial,
+so I'll paste in some code I already prepared. Oh, and I need to auto-complete
+a few things to get the missing `use` statements, like `FirewallMap` from SecurityBundle,
+and a few other ones.
+
+Our `TargetPathHelper` class doesn't really do much: it pushes most of the work
+back to the methods from the trait. So, this test basically creates a bunh of mocks,
+creates a `FirewallConfig` that returns a firewall name of `firewall_name`, and
+then we ultimately make sure that this speicla key is set on the session to the
+URL we passed to `savePath()`.
+
+If you're interested in understanding this test better, you can totally look into
+it further. But, the beautiful part is that creating a unit test for Symfony is no
+different than creating a unit test for an application: there's no framework code
+here.
+
+Let's go run this one test directly:
+
+```terminal
+./phpunit src/Symfony/Bundle/SecurityBundle/Tests/Security/TargetPathHelperTest.php
+```
+
+## Adding the Service Config
+
+Hey! It works! We *now* have a fully-functional new class *with* a test! But, because
+we have not registered this class as a service yet, the user would still need to
+do this manually. And that's a bummer.
+
+Inside SecurityBundle, look at `DependencyInjection` and open `SecurityExtension.php`.
+This class loads several XML files that provide all of the services for this bundle.
+Inside the `Resources/config/` directory, open `security.xml`. Around line 136,
+you'll start to see the services that our *new* service depends on - like the
+FirewallMap and the FirewallConfig.
+
+To register our new `TargetPathHelper` as a service, we could include some XML
+config in *any* of these XML files - it doesn't technically matter. But, which
+file makes most sense? Well, 1 minute ago, I wasn't sure. But now that I see all
+of these related services in `services.xml`, I think we've already found the right
+place. But, like everything else, if we're wrong, someone will tell us when we
+create the PR;
+
+Add a new service tag. For the id, how about, `security.target_path_helper`. I'm
+trying to follow the existing naming conventions in this file. 
+
+For the class, it's `Symfony`, well, let's cheat: copy the namespace from the class
+above, paste, then `TargetPathHelper`. Inside, our service will need 3 arguments:
+the session, firwall map & request stack.
+
+Add  `<argument type="service" id="session" />`. Next, `<argument type="service" id=""`
+and now we need the firewall map. Its id is up here: `security.firewall.map`.
+Finally, `<argument type="service" d="request_stack">`.
+
+Done! Our new class is now registered as a service!
+
+## Enabling Autowiring
+
+But, there's still *one* small piece missing. To allow the `TargetPathTrait` to
+be autowired, like `FirewallMap` in the issue example, we need to create an alias
+from that class to the service id - just like in the comment below.
+
+To do this, add `<service id="" />`, go copy the *class* name, and paste it here.
+Then, `alias=""`, copy the service *id* this time, and paste again.
+
+That's it! The `TargetPathHelper` will now be an autowireable service.
+
+And... we're done! The *last* thing I'd recommend is to create a real project and
+test our your new feature manually. Sure, our class has a test... but there is
+*not* a test for our service config - we could have messed that up. Because we
+already went through this process earlier when testing Colin's PR, I'll skip it.
+But, saying you tested your code in a real app can definitely help push your
+PR forward.
+
+Now, let's submit the PR!
