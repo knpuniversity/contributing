@@ -1,31 +1,128 @@
 # Submitting Pr
 
-Coming soon...
+The *first* thing to notice is the base branch. This is *super* important. Because
+we created our branch off of master, this base branch should be master. If we had
+created the branch off of 3.4, then, of course, this should be 3.4.
 
-All right, let's get this poll request created. Head over to the terminal that has symphony run, gets status, everything was good, so let's add everything and say credit. Nice new commit message. Adding a new target path. Helper, class and service. Cool. Now we have one remote currently, which is two remotes with Collin and origin, but we don't have push access to push this up to st me slash symphony, so we're going to need to fork the repository. So over here I'll click fork and in my case I actually, I guess I actually already have a word for this that we've arrived slash symphony, but if you don't create one and it'll be your username slash symphony and you'll now have a fork and I'll quit cloner download so I can get that url and we're going to add this as remote remote add weaverryan and I'll push that and then remind myself on target path helper portray. I'll say get pushed weaverryan target path helper. 
+One easy way to make sure you have things setup correctly is to make sure that you
+only see the commits down here that you expect. If you mess up the base branch,
+you'll probably see a bunch of extra commits and changes.
 
-Perfect. My moved back over. With any luck, you might immediately see a little yellow banner here that says that sees that new branch and says, create a pull request. That doesn't always happen with symphony. I've noticed because it's so big, but that's no problem. We can always refresh, find our target path helper, and then create new poll request. Okay. The first thing to notice is that you need to make sure that your base branch doing the pull request again, is correct. Since we created our branch off of master, we want the pull request to growing it's master, but if we had created the pull request against, for example, three point four, we would want to change our branch to three point four. One other easy way to make sure you have things correct is to make sure that you only see the commits down here that you expected no extra commits, no extra changes, just like with the issue. This gives you a really nice a template down here for your pull request, so we're wanting to go to master. This is not a bug fix. This is a new feature. This is a new feature 
+## Making Changes to your PR
 
-and notice that it talks about adding a new item to the change log if it's a new feature. Okay, that's actually something I forgot. So let's go back over here. We're looking for is he changed long. That's inside of the bundle or component that we're working on. So in this case, inside of security, so four point two, you can see there's already a bunch of features here. What does that. Another one 
+The pull request description comes with a nice template to get us started. For
+the branch, because this is a new feature, we *do* want the `master` branch.
+This is not a bug fix and this *is* a new feature.
 
-added a target path. How do they go copy the namespace target path, helper class 
+Oh, and if this is a new feature, apparently we should update the CHANGELOg.
+I totally forgot that!
 
-and service to help saving or 
+Go back to your editor. Then, inside whatever bundle or component you're working
+on - so SecurityBundle for us - find a `CHANGELOG.md` file. If our new feature is
+accepted, it will be in the next minor version - which is 4.2 right now. You can
+already see a few new features listed there.
 
-getting the target path from the session. 
+Let's add our new feature: describe what we added & why it's useful.
 
-I'm a makeover. 
+To add this, we *could* just make a second commit. And that would be *totally*
+fine. In fact, if you're making significant changes to the pull request, making
+new commits *is* often a good idea, because it will help people see how your
+pull request evolved.
 
-Do get deaf. 
+But, in this case, run:
 
-I'll add that. Now instead of making a second commit, you can make a second command. That's totally fine. And if you're making significant changes to the poll request, that actually makes sense to have separate commits this case. I'm gonna do Dash Dash on men, which is actually just going to add those changes to my previous commit. So I still just have one commit. Of course. This you're going to do good push. We've around target, pap helper, dash, dash force. Okay, so let's go back to our poll request. Alright, so BC breaks. No, that's a very important thing. You cannot break back as compatibility and symphony deprecations no, we didn't deprecate anything. That's a test pass. Yes. And then fixed tickets. There's not always a ticket that you're fixing, but in this case we are fixing ticket two, seven, eight, three, five. And then not a stocks per here. Whenever you have a new feature we you always need to credit back per. I'm just gonna put this as a to do for now if you have not done that yet. 
+```terminal
+git add -u
+```
 
-Okay. 
+to add everything. Then:
 
-Right here, right a short read me entry for your feature slash bug fix on the description of the problem. And also how this solves it. No, I have no idea if this requests is that idea. It seems like a pretty good idea to me, but the ultimately I've done good work. I've written a test and so by creating a pull request, even if this is ultimately rejected, it's still, I can still feel good about myself and you don't have to worry about anybody being mean to you. Alright, so review that and let's create the pull request. Boom, we got it. Congrats to us and as soon as it goes up you can see that we have some failures down here. So two things happen when you create a pull request. First symphony automatically starts running continuous integration and run the test. It does a son Travis Cei and also something called advair. Advair takes care of running this on windows. So for quick details on the Travis one, it's actually really cool. You can see that it's running our pull request against multiple PHP versions and also with different flags. The steps high versus low thing means actually tries to run your feature against different symphony versions to make sure there aren't any incompatibilities. Pretty awesome. We'll let that go to see if are all of the tests pass. Now notice the other thing it does is it runs something called the Fab have bought fairbot checks or your 
+```terminal
+git commit --amend
+```
 
-a poor request for coding standards violations and it's really cool. Check this out. So it basically said that ours violated some coding centers and you can actually copy this curl statement here, copy that. Go back to our terminal paste, if I do it, get diff, I'd see this fixed a couple of white space issues. That's why you don't really need to worry too much about coding standards because Shabbat will capstone. I'm once again, I'm going to come at this with a dash data men so that I don't have a meaningless commit at the end and then we'll push that with dash dash force. As soon as we do that, I'll close this, go back to an employer costs refresh and this time Fab Bot is happy 
+That will add these changes to my previous commit to keep things clean. Push with:
 
-and we still have just the one coming up here. That's it. Now, just need to wait for four. See if our test pass. If they don't pass, then you need to look into see why they're not passing. Now there's a good chance hopefully if we've made a good poll request, so we're going to get community feedback and it's one of the tricky thing. Sometimes community feedback is very direct and to the point, you know you shouldn't. You shouldn't code align this way and not that way. So important to remember not taking this personally. The community really values. Having a high quality library and symphony and because of that, there's almost definitely going to be some stuff that you need to change. The community members are just trying to help. Even for me, I never make a pull request without needing significant changes. It's just part of the life cycle, so once people start suggesting changes, you can go right back to your code, make those changes, commit them and push them. 
+```terminal
+git push weaverryan target-path-trait --force
+```
 
-By the way, you don't need to get too crazy with doing the get commit and dash dash amend. It's totally okay if your commitment, if your pull request has multiple commits. In fact, in some ways it's actually good because if someone gives you feedback and you make changes, they can see those changes on his second or third commit instead of everything's stuck in just that first commit. When someone merges this, there's they have an option to automatically squash all your commits, so even if your pull request has 10 commits in it, showing all the changes that you made of time. Ultimately when he committed the murders, have the very, very easily just squashed that into one commit. You don't need to worry about that right now. We do have this docs to do so let's take care of that next.
+## The Pull Request Description
+
+Perfect! Head back to the pull request. We did not introduce any backwards compatibility
+breaks, we didn't deprecate any features and yes, the tests should pass. A lot
+of these are just reminders to *think* about things. After we submit the PR, we'll
+see for sure if the tests pass. For fixed tickets, there isn't *always* a fixed
+ticket, but there is in this case `#27835`.
+
+Finally, whenever you add a new feature, you need to create a documentation pull
+request. I'll put TODO For now - but we *are* going to do this soon.
+
+Finally, at the bottom, it's our job to put a short README so that other people
+can understand how our feature works. Showing some code examples is best - but
+because the code behind this is pretty simple, what I *really* want to do is
+describe *why* this is needed.
+
+And... we're ready! Create that pull request! Boom! Nice job guys! Will this
+pull request be accepted? Who knows? But, we did good work, wrote tests and clearly
+stated *why* we created this feature. We rock!
+
+## Making fabbot Happy
+
+Until... yep! We immediately see some failures at the bottom! Ok, two things happen
+when you create a pull request. First, Symfony's continuous integration system
+starts running the tests: Travis CI runs tests on Linux & AppVeyor runs them on
+Windows. Click the details for Travis - it's pretty awesome.
+
+It executes the tests on *multiple* versions of PHP and uses different flags to
+use both the *newest* version of Symfony's dependencies and the oldest allowed
+versions. We'll let this keep doing its work.
+
+The *second* thing that happens after creating a pull request is that fabbot runs.
+Fabbot checks your pull request for coding standards violations. Apparently we
+have two problems! But, here's the best part: copy that curl statement, find your
+terminal, and paste! Run:
+
+```terminal
+git diff
+```
+
+Yep, this automatically fixed two whitespace issues that violated Symfony's coding
+standards. This is why I don't worry *too* much about coding standards until now:
+fabbot will help us.
+
+And because these changes aren't important, just like before, let's *amend* our
+commit:
+
+```terminal
+git add -u
+git commit --amend
+```
+
+Push that with:
+
+```terminal
+git push weaverryan target-path-trait --force
+```
+
+Ok, check it out: go back to the pull request. Refresh and... yea! Fabbot is happy!
+
+So... what now? First, wait to see if the tests pass. If they don't, yea, you'll
+need to see if our changes caused some unexpected bug. And second, wait for community
+feedback! Sometimes, feedback can be direct and to the point: we're developers,
+so we like to look at all the smallest technical details. Don't take this personally:
+feedback is meant to be constructive - we're all on the same side. And, yea, you'll
+almost *definitely* need to make at least *some* changes. Heck, I *rarely* make a
+pull request that doesn't need significant changes after some feedback. It's awesome!
+Usually, someone thinks of a better way of doing something. When that happens,
+you know the drill: make the changes, commit, push, and check fabbot and the tests
+again.
+
+Oh, and don't worry too much about doing the `git commit --amend` thing or rebasing.
+It's *totally* ok to have multiple commits. In fact, in many ways, it's better!
+People can see how the pull request has changed over time. And also, when someone
+merges your pull request, they use a tool that makes it *really* easy to squash
+all of your commits down into 1, if they want to. That's not something you need
+to worry about.
+
+Next: we haven't created our documentation pull request yet. Time to do that!

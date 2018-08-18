@@ -1,25 +1,141 @@
-# Documentation Bug
+# Uh oh: Documentation Bug
 
-Coming soon...
+The *last* TODO for our PR is to create a documentation PR. And, honestly, because
+we're talking about contributing, in my opinion, making changes to the documentation
+is probably the easiest and most effective way to contribute to Symfony! There are
+*tons* of great ways to help the docs, even if you're *not* documenting a new feature.
 
-So our last to do on this pr is degraded a documentation per in, honestly, when you're talking about contributing, contributing to the documentation is probably one of the easiest and most effective ways to contribute to symphony. There is tons of things to be done on the documentation even when you're not creating a new feature. For example, if you are reading the symphony documentation, for example, you're looking at the forums chapter and if you find something that's inaccurate or just confusing, you can go right up here, click edit this page, and you are back on get hub in a screen where you can actually submit a poor request. The documentation, the more feedback we get on the documentation from users actually trying to learn this stuff, the better it is for everyone. So take a few extra minutes and you can help. If it took you an hour to understand something that was confusing, you can save many, many other people that time in the future. I'm gonna. Go back to the homepage of the symphony docs 
+For example, imagine you're reading the docs - like the forms page. Then, you find
+something that's inaccurate or confusing. Well, just go back to the top, click
+"Edit this page", and you'll be inside an editor on GitHub where you can make
+some changes and create a pull request.
 
-and clone this down into my project, pulling us down onto my machine. So I'm gonna. Go back to my main contributing directory that we've been working in and clone my symphony docs right there. I'm also going to go back and Petri storm and go back to my contributing directory so you can see all of our test project we've been creating and now you can see the symphony docs right there. Alright, so we wanted to document this target path helper and one of the tricky parts is where should it go in the documentation it might be obvious or it might not really be obvious and if you're not sure the best thing to do is just to put it somewhere you think is good and if there's a better spot, someone will tell you on the pull request. So move back over to the terminal where were cloning the documentation because this feature builds off of the target pap trait. Let's move into the symphony docs and just search for say get grabbed target Patrick. Okay. Apparently this is documented in a form underscore login page, so let's go check that out. Somebody docs security form underscore logging down here all the way at the bottom. Here is where it talks about the target path trait talks about how you can use that trait, they use those functions, so I think what we can do is add a little bit more documentation down here about our new tire path helper, but wait, 
+I've worked on the documentation for years. And the *best* way to improve it is
+to get feedback from real people who are trying to use it. Taking a few minutes
+to reword a paragraph could save someone else *hours*. That's pretty cool.
 
-because when I opened this document, 
+## Cloning the Docs
 
-when I was first looking at this document, I noticed something interesting at the top here. It describes how this target path feature works in general, how it stores things to a session. Then it has the snow down here, sometimes redirecting to the original requested page and cause problems like if a background age x request appears to be the last visited your out causing the user to be redirected there, I happen to know that that is no longer true. That note is out of date. In other words, I think I just found a documentation book. Let me show you. I figure to symphony slash symphony outside, t again, and I'm going to open up a class call 
+Go back to the homepage of the Symfony docs. Copy the clone URL: let's clone this
+down onto our machine. At your terminal, move back into the main contributing directory
+and run `git clone` and paste.
 
-exception listener from the security component. This is the class that's responsible for setting that target path, studying that key into the session than a normal circumstances, and it happens all the way down at the bottom in set target path. So if you go to a page like slash admin right before, as an as an anonymous user, right before you're redirected to the login page, this set target path method is called. It is responsible for saving the target path. Notice this actually uses the method off of the target path trait, but if you look in here, it actually has code near that checks to see if this is an Ajax request and that avoids setting any urls from Ajax requests. So I think that note is out of date. The question is how old is that book? Do we need to fix that bug? How long ago was that fixed and what versions of the docs do we need to update you look at the roadmap. We might need to fix this. Although back in two point eight or three point four or four point one depending on when this was fixed. So one way to figure this out is to just go to kit blame on get hub and all the way down in the bottom you can see that this line was actually last modified two years ago 
+```terminal-silent
+git clone git@github.com:symfony/symfony-docs.git
+```
 
-and actually if we do a little digging in here, what was modified two years ago was not even this line. So this means this line is a more than two years old and this line is all of us all the way back to version two point seven. So in other words, the fix was in there at least in version two, point seven, if not earlier. Well, since we can't fix things in two point seven, since that's end of life, we need to fix this on the two point eight documentation branch. Okay, that's awesome. So let's move over and I'll say I'll create a new branch. Get checked up, Ashby, remove outdated note origin two, point eight. I'll then move back over and looks like that documentation did exist then. And actually in addition to that, you see we can get rid of this note here entirely, but this actually references a whole other documents which talks about how to control this, how to avoid Ajax requests. This whole thing is out of date as well, which is good because this looks really complicated. So here's what we're going to do. I'm going to delete this no entirely, 
+I'll also go to PhpStorm and move us back into this main `contributing/` directory
+so we can see all of the test projects, symfony itself and the new `symfony-docs`
+folder.
 
-and also going to get rm security slash target path. That rst. Then once I get grep target for path, just to make sure no one else is referencing that file. That's bad idea. Yeah, that looks much better. So let's move back meant that was removing outdated note. Ajax requests are not set to target path. It's just like before we need to make sure that we have a for of this particular repository. So I'll go back to Sydney redox click fork. I already have a fork so I've copied my remote. You well say remote as Weaverryan paste that. Let me say, get pushed Weaverryan remove, outdated? Nope. Then with any luck, you'll see the 
+## Hunting down a Bug
 
-poor cost. A little yellow bar here. Oh, there it is. 
+Ok: we want to document our new `TargetPathHelper`. Great! Except... where should
+this live? This can be harder than you think: it's not always obvious *where*
+some docs should live. If you're not sure, don't worry: just choose some place
+that makes sense to you. If there's a better place, someone will tell you when
+reviewing your PR.
 
-Compare and pull requests and remember you'll notice that there's three commits here, which is not what we expected. That's because we need to change our base branch back to two point eight. That's what we're making the pull request against. Now it's just that one commit and let's give a little description here. Put a little message, double check that I'm just wanting to commit. Yeah, everything's looking good and 
+Head back to your terminal and move into `symfony-docs`. Because this feature
+builds off of the `TargetPathTrait`, let's see where *that's* documented:
 
-we'll submit. 
+```terminal
+git grep TargetPathTrait
+```
 
-Next. I want to talk a little bit about the build system behind the documentation because you notice that it has continuous integration as well, and then we'll finally actually write our documentation for our feature and submit a second poll request.
+Ok, apparently that's covered in some `form_login.rst` page. Go find that in
+PhpStorm: `security/form_login.rst`. Look *all* the way down at the bottom. Yep,
+here is where it talks about `TargetPathTrait`. Let's add a few more details below
+this about our new class.
+
+But wait... when I first opened this document, I noticed something interesting on
+top. It describes how this "target path" feature works in general. Then, there's
+a note below: sometimes redirecting to the originally requested page can cause
+problems, like if a background AJAX request *appears* to be the last visited page,
+causing the user to be redirected there.
+
+That makes sense... except, it's not true! Nope, this note is out of date: Symfony
+*no* longer has this problem. I think I just found a documentation bug!
+
+Let's make sure: go to [github.com/symfony/symfony](https://github.com/symfony/symfony).
+Then click "t" to open the "file search" and look for a class called `ExceptionListener`
+from the `Security/` component. *This* is the class that's responsible for setting
+the target path. It happens all the way down at the bottom in `setTargetPath()`. If
+you go to a page like `/admin` as an anonymous user, *right* before you're redirected
+to the login page, this `setTargetPath()` method is called.
+
+And, cool! This uses the method from `TargetPathTrait`, just like we did. But, check
+this out, it *checks* to see if the request is an AJAX request - that's the
+`isXmlHttpRequest()` method. If it *is* an AJAX request, it does *not* set the
+URL into the session. Yea! The documentation is wrong!
+
+## Finding the Correct Bug Branch
+
+The question *now* is: how *old* is this bug? How long ago was this changed in
+Symfony and what versions of the *docs* do we need to change? Head back to the
+[Symfony Roadmap](https://symfony.com/roadmap). The three maintained branches
+are 2.8, 3.4 and 4.1. Remember: when fixing a bug, you should fix it in the
+*oldest* maintained branch where the bug exists.
+
+To figure out when the change was made to Symfony, let's `git blame` this file.
+Scroll back down to the bottom. Hmm, so this line was last modified two years
+ago. And if you look at that commit, its changes do *not* include the AJAX part
+of this line. Yep, the change we're looking for is *more* than two years old.
+*And* it was first included in Symfony 2.7!
+
+In other words, the AJAX fix has existed since Symfony 2.7, if not earlier. But,
+because Symfony 2.7 is no longer maintained, we'll fix this on the 2.8 branch of
+the documentation. Then, after our pull request is submitted, our changes will
+be merged *up* into all of the newer branches automatically.
+
+## Fixing a Docs Bug
+
+Awesome! Find your terminal and create the new branch:
+
+```terminal
+git checkout -b remove-outdated-note origin/2.8
+```
+
+Move back to the document. Yep, that bad note *did* exist even back then. And,
+woh! It links to a *whole* other document that describes how to work around this
+problem. We can delete all of this!
+
+Delete the note first. Then delete that other file:
+
+```terminal
+git rm security/target_path.rst
+```
+
+And... we're ready!
+
+```terminal
+git status
+git add -u
+git commit
+```
+
+And describe why we're deleting all this stuff.
+
+## Creating the Pull Request
+
+Ok, the code is ready! Head back to GitHub and fork the repository if you haven't
+already. Then, copy your git URL and add your remote: `git remote add weaverryan`
+and paste. Now, push!
+
+```terminal
+git push weaverryan remove-outdated-note
+```
+
+Move back and... if you're lucky, you'll see a yellow bar. We *are* lucky this
+time! Click "Compare and pull request".
+
+Oh, but hmm: why are there two extra commits by other people? Because we need to
+change our base branch back to 2.8.
+
+Much better. In the description, we want to make this as easy as possible to merge.
+So, let's describe *why* we're removing this and that we checked the code to be
+sure.
+
+Ok... submit! Next, the docs *also* have a continuous integration system. I want
+to talk about that, then write our own new documentation and learn a bit about
+the docs format.

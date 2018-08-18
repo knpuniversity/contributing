@@ -124,22 +124,5 @@ Finally, `<argument type="service" d="request_stack">`.
 
 Done! Our new class is now registered as a service!
 
-## Enabling Autowiring
-
-But, there's still *one* small piece missing. To allow the `TargetPathTrait` to
-be autowired, like `FirewallMap` in the issue example, we need to create an alias
-from that class to the service id - just like in the comment below.
-
-To do this, add `<service id="" />`, go copy the *class* name, and paste it here.
-Then, `alias=""`, copy the service *id* this time, and paste again.
-
-That's it! The `TargetPathHelper` will now be an autowireable service.
-
-And... we're done! The *last* thing I'd recommend is to create a real project and
-test our your new feature manually. Sure, our class has a test... but there is
-*not* a test for our service config - we could have messed that up. Because we
-already went through this process earlier when testing Colin's PR, I'll skip it.
-But, saying you tested your code in a real app can definitely help push your
-PR forward.
-
-Now, let's submit the PR!
+Ok, we have *one* more detail to worry about, and then we can push our code to
+GitHub.
