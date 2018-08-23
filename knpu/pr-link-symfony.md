@@ -60,7 +60,7 @@ and die!
 
 Finally, we need a route for this! We don't have annotations installed, so, to
 keep things simple, add this in `routes.yaml`: uncomment the example, and change
-the controller to `TestController::test`.
+the controller to `TestingController::test`.
 
 Done! Back in the terminal, start the built-in PHP web server in the `public/`
 directory:
