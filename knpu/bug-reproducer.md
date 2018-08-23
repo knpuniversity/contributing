@@ -5,9 +5,9 @@ Triaging issues and pull requests is seriously, the *best*. But, occasionally,
 I want to report it!
 
 To make the *best* possible bug report, we should create a "reproducer": a Symfony
-project that reproduces the bug with as *little* code as possible. I don't have
-the error I saw in front of me now, but it was pretty simple: I create a form class,
-tried to use it in my controller, then. I got a *very* strange container cache bug.
+project that shows the bug with as *little* code as possible. I don't have the error
+I saw in front of me now, but it was pretty simple: I created a form class, tried
+to use it in my controller, then boom! I got a *very* strange container cache error.
 
 ## Creating the Reproducer Project
 
@@ -71,19 +71,19 @@ restart the server and try it again. Same error. Let's take a screenshot: it's
 ## Opening the Bug Issue
 
 Go back to the Symfony repository and click to open a new issue. Yep, this is a
-"Bug Report". Ah, this is nice! We already have a nice outline of all the info
-needed. Affected versions: `master`. This *could* be a bug on a stable version,
-and that *is* something we could check. But, since it would be such a critical
-and obvious bug, it's probably not on the stabl eversion.
+"Bug Report". And, this is cool! We have a nice outline of all the info needed.
+Affected versions: `master`. This *could* be a bug on a stable version, and that
+*is* something we could check. But, since it would be such a critical and obvious
+bug, it's probably just on `master`.
 
 For description, let's describe what we're trying to do. I'll also upload my
-error. Oh, and I forgot a description: I'll reference part of the error message
+error screenshot. Oh, and I forgot a title: I'll reference part of the error message
 for this.
 
 ## Pushing the Reproducer to GitHub
 
-Under "How to Reproduce", ah, *this* is where our issue will *shine*! We need to
-push our test project up to GitHub so we can share it.
+Under "How to Reproduce", ah, *this* is where our issue will *shine*! Let's push
+our test project up to GitHub so we can share it.
 
 Move back to the terminal, stop the web server, then initialize a new Git repository
 with:
@@ -94,20 +94,19 @@ git add .
 git commit
 ```
 
-with a message. Next, go to GitHub, click "New", type a name and click "Create Repository".
+and a message. Next, go to GitHub, click "New", type a name and click "Create Repository".
 Copy the two lines near the bottom for an existing repository. Then, find your
 terminal and... paste!
 
 That's it! Refresh the page on GitHub: here is our simple reproducer app. Copy
-its URL. Then, go back to the issue. Let's mention our reproducer app first and
+its URL. Then, head back to the issue. Let's mention our reproducer app first and
 how to trigger the error on it.
 
-
 Then, to make life *even* easier, summarize what we did to get the error. As
-extra credit, I'll even link *right* to the line that triggers the error.
+extra credit, I'll even link *right* to the line that triggers it.
 
-And... that's it! I don't have *any* possible solution - this error is way above
-my pay grade. Finish the message and... submit!
+And... that's it! I don't have *any* possible solution: this error is way above
+my pay grade. And, that's ok. Finish the message and... submit!
 
 We're done! *This* is a bug report worth being proud of.
 

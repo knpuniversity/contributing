@@ -1,35 +1,127 @@
-# Docs Ci Feature
+# All about the Docs: CI & Format
 
-Coming soon...
+After waiting about a minute, oh, you'll notice that the continuous integration for
+our documentation pull request failed? What does that even mean? Are there tests
+for the documentation?
 
-After waiting about a minute, oh, you'll notice that our continuous integration for our documentation, poor request failed. What does that even mean? How does, how do you test fail for documentation? While the deputation, as you noticed, uses an extension called R s, t that's called a restructured text. It's a markdown like syntax, but with some extra features. These extra features involved the ability to, for example, link I search in here, you can use, there's a little dock and tax. You can actually link to another page and then to actually turn this into html, there's a build process using a python library and ultimately this gets built in html, but if this document we're missing, it would actually fail that build. So what the continuous integration does is actually runs the bill to make sure that all everything is okay. The syntax is good and there are no missing links and if you click to look at it, you'll see we actually have an error. It says security. The rst, 12 slash 69 talk tree contains reference to nonexistent document security slash target path security slash target. Bad is the name of the document that we just removed. This is telling us that there's still a reference to that somewhere else that we need to remove. That's pretty sweet. So let's move back over. 
+Ok, let's learn a few important things about the docs. First, you probably noticed
+that all the files use a `.rst` extension. That's called Restructed text. It's a
+lot like markdown... on steroids. It has, for example, a special syntax for linking
+from one page to another - that's this `:doc:` stuff.
 
-We'll go to the main security document all the way on the bottom. Twelve 69. It's complaining about. I'm missing reference. You see this thing called a tree. This is an implementation detail of, of restructured tax that deals with how it builds the table of contents, but far versus the point is we need to get rid of security slash target path right here. Then I'm actually going back and get grep that to see if there's anywhere else and oh it looks like the only other thing is something called a redirection map, which is an internal tool to help us manage old urls that had been deleted. So that's not something that we parsed by our library. So you know, and I wouldn't show that. 
+Behind the scenes, a build process turns all of this into HTML. But, if we're
+linking to a document that doesn't exist, that build will fail!
 
-Let's add that. And I'm going to use my commit dash dash men because that's not important enough. Change to keep in the history and we'll push that with dash dash force. And hopefully the build will work this time. Okay. Back to the task at hand, which is that we actually want to write documentation for our new pull request, which means we need a documentation per against the master branch. So I'm gonna. Go back to my documentation gifts. They get, check out those be target path helper. Then we're gonna. Make this against based off of origin slash master. 
+Click "Details" to open Travis CI. The continuous integration system does exactly
+this: it runs to build to make sure all the basic stuff is okay, syntax, links
+and a few other things.
 
-Perfect. Now I'll move over. 
+And... yep! We have an error: apparently `security.rst` line 1269 contains a reference
+to a non-existent document `security/target_path`. That's the page we removed!
+This is tells us that there is another reference that we need to remove. Awesome.
 
-I'll find the form login key here. You can see our note is still there because it hasn't actually been deleted yet and then all the way to the bottom. Let's start writing our documentation there. Just a few. One of the. If you're not, a lot of people aren't comfortable writing documentation and if you're a non native non native English speaker, you might think that you can't do it, but that's totally not true. The really important thing with documentation is that you write good code examples. So when you think about writing documentation and think about writing code that uses the feature first and then basically just putting that code into the documentation we on the documentation team can help you with rewarding things are improving things to make it better, but the hard work is your job of actually writing the code. So down here I'll say something like, you can also use the target path 
+Move back over, find the `security.rst` file and scroll down to line 1269. Ah.
+This `toctree` thing is another feature of RST - it helps build the table of
+contents. Remove the `security/target_path` line.
 
-helper 
+To make sure there aren't any *other* references, find your terminal and search:
 
-service in the same way down here, I'm going to start putting a code example now, two things to notice and then I'm just going to paste in some code here on the bottom. Now a couple of things that I want you to notice. 
+```terminal
+git grep security/target_path
+```
 
-Yeah, 
+Only one other spot - `redirection_map`. That's an internal tool to help us manage
+old URLs - not something we need to worry about. Let's commit:
 
-and I know this green background is super annoying inside this editor with researchers tax. Whenever you want to surround a technical word, it's always used as two ticks. That's similar to mark down, but mark dental needs is one tick. Second thing is when you want to have a code block that's Php Code You do to Colin's on the previous line, and then you indent to make that because it's not that important. Remember, you're going to find examples everywhere inside of the documentation of what you want to do. The other important note is that you want to create, we want to put as much code as you want to make sure that the code that you put inside of your head as much context as possible. So I've added a note here just to say that this inside of some controller somewhere, I also want to make sure that I have any use statements that are needed for new code, so I don't necessarily need the use statement for the requests because people know what that is, but the target math helper is important, so I need to have a use statement for that. And the other thing that is is that the other thing that we try to do is instead of having lots of text above here talking about what this code is going to do, we'd like to have the code do the work, actually write code down here and put comments inside of the code to add more context. People tend to read the code more than they read the paragraphs 
+```terminal
+git add -u
+git commit --amend
+```
 
-and that's it. The last we're going to do is because it's a new feature right above it. We're not a special tag called version added four point two because symphony four point two is currently not released. If our feature is merged, it will. It should be in symphony four point two, so I'll add version added and we'll use the language. The target path helper class was introduced in symphony four. Point two. This syntax here is something that's special to restructured text. You can also make a tips and notes like that. It's not that important. Those are things that you'll see in the documentation. Alright, that's it. 
+I'm using amend because this isn't an important change worth making a second commit.
+Push with:
 
-That looks good. 
+```terminal
+git push weaverryan remove-outdated-note --force
+```
 
-I had a commit message and then push this up to my remote. Get pushed weaverryan target path helper. Then let's move back and hey, look at our existing pull request has passed, so that's awesome. If you don't see the yellow bar here to create your poll request automatically go back to your fork of it, 
+Hopefully the build will work this time.
 
-select your branch 
+## Branching for the new Feature
 
-and hit new pull request. 
+Ok: back to our original task: we need to write documentation for our new feature.
+That means we need to create a documentation PR against the `master` branch. Go
+back to to the terminal and create a new branch:
 
-Okay, 
+```terminal
+git checkout -b target-path-helper origin/master
+```
 
-and this time we're going against the master branch and this is perfect. Two things I'm going to do here is I'm going to prefix this with, this is not that important because the core team will do that. WCM, that counts for it sounds for waiting a code merge. It means our code is not actually merged yet for this. Then I'll just say see symphony slash symphony and the number of our polar class, which is two eight, one eight one. I don't need to say too much more than that because the feature is actually explained to over in that other branch and hopefully that's it. Create the pull request, wait to see the test pass and you're good. You are now a documentation expert and we do hope to see you committing a lots more, a lot more.
+## Writing in RST
+
+Awesome! Move back and find the `form_login.rst` file again. Scroll all the way
+down to the bottom.
+
+If you're not comfortable writing documentation or if you're a non-native English
+speaker, you might think that you can't write docs. Nut that's totally not true!
+The *really* important thing about writing documentation is creating good code
+examples. Pay less attention to writing words and more attention to thinking about
+writing some *code* that shows how your feature is used. When you submit your PR,
+the docs team can help reword & improve the littler details. The hard work is
+writing the code.
+
+I'll start with a quick sentence, then right into the code block. I'll paste in
+an example I already created.
+
+And, yeah, this green background is super annoying - I don't normally use PhpStorm
+for documentation. Anyways, a few important things about the format. First, any
+technical term - like a class name - should be surrounded by two ticks. Second,
+when you want to add a PHP code block, put two colons and indent the code block.
+And third, when you're inside the code, put as *much* context as possible. For 
+example, I've added a note to say that this code is from a controller. You also
+want to make sure that you include any `use` statements needed for the new code.
+We don't include the `use` statements for *everything*. For example, I didn't
+include the `use` statement for the `Request` because people know what that is
+and it's not relevant to what we're doing.
+
+Finally, we recommend *avoiding* big paragraphs of explanatory text. That's why
+we just included once sentence then the code. If you want to explain a bit more,
+code comments work great. We've found that people tend to read the code, but skip
+the paragraphs. Use that to your advantage!
+
+And... that's it! Sure, there are a lot of other little format details. But,
+the docs have *plenty* of examples about how to do just about anything.
+
+Oh, but because this is a new feature, I'll add one more thing. Right above the
+feature, add a special `versionadded:: 4.2` tag. If our feature is merged, it will
+be included in Symfony 4.2 - the next Symfony version. I'll add some text below
+about this.
+
+This syntax is something special to RST. You can also make a tips and notes just
+like this.
+
+Ok - let's move over, add this file, and commit:
+
+```terminal-silent
+git add -u
+git commit -m "Documenting the new TargetPathHelper"
+```
+
+And push:
+
+```terminal
+git push weaverryan target-path-trait
+```
+
+Move back over to GitHub. Hey! The tests passed on our other pull request! Sweet!
+And, justl ike before, if you don't see the yellow bar here, go back to your fork,
+select the new branch and hit "New pull request".
+
+This time, our pull request *should* be against the master branch. I'll prefix
+the title with `[WCM]` - that means "Waiting for Code Merge" - a little flag to
+help us know this is for a still-unmerged new feature.
+
+For the body, saying see `symfony/symfony#28181` should be enough. Create that
+pull request!
+
+Hey! You're now a docs expert! So, I hope to see a *bunch* of docs PR's from you.
