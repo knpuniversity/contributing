@@ -69,7 +69,7 @@ git clone git@github.com:symfony/symfony.git
 When that finishes, we now have a `symfony` directory right next to our app. To
 get Colin's branch, we have a few options. Move into the new `symfony` directory:
 
-```terminal
+```terminal-silent
 cd symfony/
 ```
 
