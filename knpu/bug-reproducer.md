@@ -18,8 +18,13 @@ create our new reproducer project based on that:
 composer create-project symfony/skeleton:dev-master container_bug_reproducer
 ```
 
-When that finishes, move into the new directory. The *one* package I know I need
-is `form`. Get it installed:
+When that finishes, move into the new directory:
+
+```terminal-silent
+cd container_bug_reproducer/
+```
+
+The *one* package I know I need is `form`. Get it installed:
 
 ```terminal
 composer require form
@@ -28,21 +33,33 @@ composer require form
 While we're waiting for this to finish, go back to PhpStorm, close a few files,
 and go into the new directory. To reproduce my error, I know I need a new form
 class. Right inside `src/`, create a new PHP class: `SomeFormType`. My creativity
-today is *off* the charts. Make this extend the usual `AbstractType`. Normally,
-we would *also* add the `buildForm()` method. But... I'm not even sure that's needed
-to trigger the bug. So, in the spirit of making our reproducer as *small* and
-focused as possible, let's skip it, until we *know* it's needed.
+today is *off* the charts. Make this extend the usual `AbstractType`:
+
+[[[ code('7a59ce1187') ]]]
+
+Normally, we would *also* add the `buildForm()` method. But... I'm not even sure
+that's needed to trigger the bug. So, in the spirit of making our reproducer
+as *small* and focused as possible, let's skip it, until we *know* it's needed.
 
 In the `Controller/` directory, create another new PHP class: 
 `ContainerTestController` in the `App\Controller` namespace. Give it the usual
-`public function test()`.
+`public function test()`:
+
+[[[ code('135bf6effa') ]]]
 
 Because we need to create a form, extend `AbstractController` from `FrameworkBundle`
-so we have that shortcut. Then, `$form = $this->createForm()` and pass
-`SomeFormType::class`.
+so we have that shortcut:
+
+[[[ code('54bee0504b') ]]]
+
+Then, `$form = $this->createForm()` and pass `SomeFormType::class`:
+
+[[[ code('c1c12b7c3a') ]]]
 
 If I'm right, the error will happen *right* here. To test this, find `routes.yaml`,
-uncomment the route and point the controller to our code.
+uncomment the route and point the controller to our code:
+
+[[[ code('572cc3be0b') ]]]
 
 We're ready! Go back to the terminal and start the built-in web server:
 

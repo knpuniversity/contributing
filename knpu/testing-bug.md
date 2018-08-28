@@ -32,7 +32,7 @@ Let's create another small project for this. Notice that this is an issue that's
 reported on the stable version of Symfony: 4.1. So, we should create a new app based
 on that same version - not `dev-master` like before.
 
-Press Ctrl+C to stop the server, move back up to the top `contributing` directory
+Press `Ctrl`+`C` to stop the server, move back up to the top `contributing` directory
 and run:
 
 ```terminal
@@ -51,7 +51,9 @@ composer require orm
 
 And... done! Close the old directory and open this new one. Then, go straight to
 create a new controller class: how about `Issue27901Controller`. Give it a
-`public function test()`.
+`public function test()`:
+
+[[[ code('c44c706d4d') ]]]
 
 Ok: check back on the issue. He's using the Doctrine Connection object - a lower-level
 object I don't use too often. To see out how to get it, find your terminal and
@@ -62,25 +64,33 @@ php bin/console debug:autowiring
 ```
 
 and scroll up. Yep! It looks like we can type-hint a `Connection` class to get
-the service we need. Do that: `Connection $connection`.
+the service we need. Do that: `Connection $connection`:
+
+[[[ code('724d1833ba') ]]]
 
 Next, he calls `execUpdate()` and passes it a `QueryBuilder` argument. You may
-already be familiar with the QueryBuilder from Doctrine. Well, in this case,
-because we're using the lower-level `Connection` class from the Doctrine dbal
+already be familiar with the `QueryBuilder` from Doctrine. Well, in this case,
+because we're using the lower-level `Connection` class from the Doctrine DBAL
 library, the `QueryBuilder` is *also* a lower-level class from that library.
 
 These are the types of little details that can make triaging a bug tough! But,
 it's also part of the fun: you'll need to *really* dig into the code to find out
 what's going on.
 
-Create the QueryBuilder with `$connection->createQueryBuilder()`. I won't even
-do anything with it yet: we're still investigating. Next, he calls `execUpdate()`.
-Oh, but that doesn't exist! I bet he meant `execteUpdate()` - pass that `$qb`.
+Create the QueryBuilder with `$connection->createQueryBuilder()`:
+
+[[[ code('4a458d12d9') ]]]
+
+I won't even do anything with it yet: we're still investigating. Next, he calls
+`execUpdate()`. Oh, but that doesn't exist! I bet he meant `executeUpdate()` - pass
+that `$qb`:
+
+[[[ code('d3e7673506') ]]]
 
 Great! At this point, I would normally install the web profiler, create some database
 entities and use a real query in the controller to see if we can replicate the
 error. But, before we do that, I noticed something: the first argument looks like
-it's supposed to be a string! Hold Command or Ctrl and click to open the
+it's supposed to be a string! Hold `Command` or `Ctrl` and click to open the
 `executeUpdate()` method.
 
 Yep! The first argument should be a string! But, the user is passing a `QueryBuilder`
@@ -103,11 +113,11 @@ So, let's reply! And give as *many* specific reasons why we think this might not
 be a bug: in this case, that the first argument expects a string.
 
 As extra credit, I'll link to this exact code. Go to the `doctrine/dbal` repository.
-Then, press the letter "t" to open this search screen. I *live* by this shortcut.
+Then, press the letter `t` to open this search screen. I *live* by this shortcut.
 Look for `Connection.php` and open it. Search for `executeUpdate()` and... click to
 select that line: this updates the URL to point here.
 
-*Then* - here's another trick - press the "y" key. This changes the URL from `master`
+*Then* - here's another trick - press the `y` key. This changes the URL from `master`
 to the actual commit sha. This helps make sure that this link - to line 1068 - will
 *forever* point to the line we want - even if someone makes changes on the `master`
 branch and moves this line.

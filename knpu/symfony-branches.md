@@ -4,7 +4,8 @@ We've already helped push forward a pull request, solved an issue and even
 reported a bug. Hello! We deserve cake!
 
 And we deserve to move up one more level of difficulty: it's time to contribute *new*
-code with a pull request. Let's look at an issue I found: [#27835](https://github.com/symfony/symfony/issues/27835).
+code with a pull request. Let's look at an issue I found:
+[#27835](https://github.com/symfony/symfony/issues/27835).
 
 ## Understanding the Issue
 

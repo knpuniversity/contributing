@@ -88,7 +88,7 @@ The annotation has an option message:
 > The value should be a multiple of {{ compared_value }}
 
 That's a pretty good message. In the validator, Colin uses ``fmod`` to compare the
-values, which means the user can compare decimals - like 1 is a multiple of .5.
+values, which means the user can compare decimals - like 1 is a multiple of 5.
 Yea, this all looks pretty good to me!
 
 The second thing to look for is if the PR has a test: *most* features need some.
