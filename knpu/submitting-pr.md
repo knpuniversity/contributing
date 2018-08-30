@@ -44,7 +44,7 @@ git commit --amend
 That will add these changes to my previous commit to keep things clean. Push with:
 
 ```terminal
-git push weaverryan target-path-trait --force
+git push weaverryan target-path-helper --force
 ```
 
 ## The Pull Request Description
@@ -102,7 +102,7 @@ git commit --amend
 Push that with:
 
 ```terminal
-git push weaverryan target-path-trait --force
+git push weaverryan target-path-helper --force
 ```
 
 Ok, go back to the pull request. Refresh and... yea! Fabbot is happy!
