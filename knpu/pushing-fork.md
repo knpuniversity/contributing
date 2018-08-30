@@ -15,7 +15,7 @@ and `FirewallConfig`.
 To register our new `TargetPathHelper` as a service, we could include some XML
 config in *any* of these XML files: it doesn't *technically* matter. But, which
 file makes the most sense? Well, 1 minute ago, I wasn't sure. But now that I see all
-of these related services in `services.xml`, I think we've *already* found the right
+of these related services, I think we've *already* found the right
 place. If we're wrong, someone will tell us when we create the PR.
 
 Add a new service tag. For the id, how about, `security.target_path_helper`. I'm
