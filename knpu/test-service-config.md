@@ -1,4 +1,4 @@
-# Writing Tests & Service Config
+# Writing & Running Symfony's Tests
 
 When you make a pull request to Symfony, you *almost* always need at least one
 test. And... yea... we definitely need a test for our new `TargetPathHelper`.
