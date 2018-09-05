@@ -109,7 +109,7 @@ git commit -m "Documenting the new TargetPathHelper"
 And... push:
 
 ```terminal
-git push weaverryan target-path-trait
+git push weaverryan target-path-helper
 ```
 
 Move back over to GitHub. Hey! The tests passed on our other pull request! Sweet!
