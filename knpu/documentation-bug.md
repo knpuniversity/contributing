@@ -25,7 +25,7 @@ git clone git@github.com:symfony/symfony-docs.git
 ```
 
 I'll also go to PhpStorm and move us back into this main `contributing/` directory
-so we can see all of the test projects, symfony itself and the new `symfony-docs`
+so we can see all of the test projects, symfony itself and the new `symfony-docs/`
 folder.
 
 ## Hunting down a Bug
@@ -44,14 +44,19 @@ git grep TargetPathTrait
 
 Ok: apparently that's covered in some `form_login.rst` file. Go find that in
 PhpStorm: `security/form_login.rst`. Look *all* the way down at the bottom. Yep,
-here is where it talks about `TargetPathTrait`. We'll add a few more details below
-this about *our* new class.
+here is where it talks about `TargetPathTrait`:
+
+[[[ code('b582a58156') ]]]
+
+We'll add a few more details below this about *our* new class.
 
 But wait! When I first opened this document, I noticed something interesting on
 top. It describes how this "target path" feature works in general. Then, there's
 a note below: sometimes redirecting to the originally requested page can cause
 problems, like if a background AJAX request *appears* to be the last visited page,
-causing the user to be redirected there.
+causing the user to be redirected there:
+
+[[[ code('cfc1729a22') ]]]
 
 That makes sense... except, it's not true! Nope, this note is out of date: Symfony
 *no* longer has this problem. I think I just found a documentation bug!
@@ -59,7 +64,7 @@ That makes sense... except, it's not true! Nope, this note is out of date: Symfo
 Let's make sure: go to [github.com/symfony/symfony](https://github.com/symfony/symfony).
 Then press "t" to open the "file search" and look for a class called `ExceptionListener`
 from the `Security/` component. *This* is the class that's responsible for setting
-the target path. It happens all the way down at the bottom in `setTargetPath()`. If
+the `targetPathTrait`. It happens all the way down at the bottom in `setTargetPath()`. If
 you go to a page like `/admin` as an anonymous user, *right* before you're redirected
 to the login page, this `setTargetPath()` method is called.
 

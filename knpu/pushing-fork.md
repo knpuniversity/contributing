@@ -10,7 +10,9 @@ Inside SecurityBundle, look at `DependencyInjection` and open `SecurityExtension
 This class loads several XML files that provide all of the services for this bundle.
 Inside the `Resources/config/` directory, open `security.xml`. Around line 136...
 yep! You'll see the services that our *new* service depends on - like `FirewallMap`
-and `FirewallConfig`.
+and `FirewallConfig`:
+
+[[[ code('2bdab52c66') ]]]
 
 To register our new `TargetPathHelper` as a service, we could include some XML
 config in *any* of these XML files: it doesn't *technically* matter. But, which
@@ -19,15 +21,20 @@ of these related services, I think we've *already* found the right
 place. If we're wrong, someone will tell us when we create the PR.
 
 Add a new service tag. For the id, how about, `security.target_path_helper`. I'm
-trying to follow the existing naming conventions in this file. 
+trying to follow the existing naming conventions in this file.
 
 For the class, it's `Symfony`, well, let's cheat: copy the namespace from the class
-above, paste, then `TargetPathHelper`. Inside, our service will need 3 arguments:
-the session, firewall map & request stack.
+above, paste, then `TargetPathHelper`:
+
+[[[ code('8149058d84') ]]]
+
+Inside, our service will need 3 arguments: the session, firewall map & request stack.
 
 Add  `<argument type="service" id="session" />`. Next, `<argument type="service" id=""`
-The id for the firewall map is up here: `security.firewall.map`.
-Finally, `<argument type="service" id="request_stack" />`.
+The id for the firewall map is up here: `security.firewall.map`. Finally,
+`<argument type="service" id="request_stack" />`:
+
+[[[ code('627c81b5a3') ]]]
 
 Done! Our new class is now registered as a service!
 
@@ -38,7 +45,9 @@ to be *autowired*, like `FirewallMap` in the issue example, we need to create an
 ## Enabling Autowiring
 
 To do this, add `<service id="" />`, go copy the *class* name, and paste it here.
-Then, `alias=""`, copy the service *id* this time, and paste again.
+Then, `alias=""`, copy the service *id* this time, and paste again:
+
+[[[ code('b84458616a') ]]]
 
 That's it! The `TargetPathHelper` will now be an autowireable service.
 

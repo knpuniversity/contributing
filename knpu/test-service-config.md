@@ -42,7 +42,7 @@ Ok, we're ready to run the tests! Do it with:
 
 Um... that's it! This is a wrapper around PHPUnit: it downloads some dependencies
 to a different directory, then... starts running the tests! And... yea... there are
-a lot of tests. I'm going to stop these by pressing Ctrl+C.
+a lot of tests. I'm going to stop these by pressing `Ctrl`+`C`.
 
 ## Running only Some Tests
 
@@ -67,14 +67,24 @@ big deal.
 
 Now that the tests are running, it's time to add our own! I'll double-click to
 get back into SecurityBundle. Because we want to test `TargetPathHelper`, the
-test should live in `tests/Security`. Create a new PHP class called
-`TargetPathHelperTest`. Make this extend the normal `TestCase` from PHPUnit. Then
-add `public function testSavePath()`.
+test should live in `Tests/Security`. Create a new PHP class called
+`TargetPathHelperTest`. Make this extend the normal `TestCase` from PHPUnit:
+
+[[[ code('522803cfba') ]]]
+
+Then add `public function testSavePath()`:
+
+[[[ code('e2e965d5d9') ]]]
 
 For the body of the test... yea... I'm going to cheat. This isn't a testing tutorial,
-so I'll paste in some code I already prepared. Oh, and I need to auto-complete
-a few things to get the missing `use` statements, like `FirewallMap` from SecurityBundle,
-and a few other ones.
+so I'll paste in some code I already prepared:
+
+[[[ code('3bc447b3ed') ]]]
+
+Oh, and I need to auto-complete a few things to get the missing `use` statements,
+like `FirewallMap` from SecurityBundle, and a few other ones:
+
+[[[ code('2351cf85e2') ]]]
 
 Our `TargetPathHelper` class doesn't really do much: it pushes most of the work
 back to the methods from the trait. So, this test basically creates a bunch of mocks,
