@@ -7,7 +7,9 @@ for the docs?
 Let's learn a few important things about the docs. First, you probably noticed
 that all the files use a `.rst` extension. That's called Restructured text. It's a
 lot like markdown... on steroids. It has, for example, a special syntax for linking
-from one page to another - that's this `:doc:` stuff.
+from one page to another - that's this `:doc:` stuff:
+
+[[[ code('90f8810a46') ]]]
 
 Behind the scenes, a build process turns all of this into HTML. But, if we have a
 link to a document that doesn't exist, that build will fail!
@@ -69,20 +71,30 @@ Pay less attention to writing words and more attention to writing *code* that sh
 how your feature is used. When you submit your PR, the docs team can help reword &
 improve the little details. The hard work is writing the code.
 
-I'll start with a quick sentence, then right into the code block. I'll paste in
-an example I already created.
+I'll start with a quick sentence, then right into the code block:
+
+[[[ code('eba7017f00') ]]]
+
+I'll paste in an example I already created:
+
+[[[ code('6d9cf41daf') ]]]
 
 And, yeah, this green background is super annoying: I don't normally use PhpStorm
 for documentation. Anyways, a few important things about the format. First, any
 technical term - like a class name - should be surrounded by two ticks. Second,
 when you want to add a PHP code block, finish the previous sentence with two colons
 and indent the code. And third, when you're inside the code, put as *much* context
-as possible. For  example, I've added a note to say that this code is from a controller.
+as possible. For example, I've added a note to say that this code is from a controller:
+
+[[[ code('bcf7b7a095') ]]]
+
 You should also be sure to include any `use` statements needed for the new code.
 Well, we don't include `use` statements for *everything*. For example, I didn't
 include the `use` statement for the `Request` because people probably know what that
 is and it's not directly relevant to what we're doing. But, I *did* add the `use`
-statement for the class we're talking about: `TargetPathHelper`.
+statement for the class we're talking about: `TargetPathHelper`:
+
+[[[ code('59f1115c8e') ]]]
 
 Finally, we recommend *avoiding* big paragraphs of explanatory text. That's why
 we just included once sentence then code. If you want to explain a bit more, try
@@ -93,9 +105,14 @@ And... that's it! Sure, there are a lot of other little format details. But,
 the docs have *plenty* of examples of how to do just about anything.
 
 Oh, but because this is a new feature, I'll add one more thing. Right above the
-new text, add a special `versionadded:: 4.2` tag. If our feature is merged, it will
-be included in Symfony 4.2 - the next Symfony version. This will add a new note
-highlighting this fact.
+new text, add a special `versionadded:: 4.2` tag:
+
+[[[ code('105cf88204') ]]]
+
+If our feature is merged, it will be included in Symfony 4.2 - the next Symfony version.
+This will add a new note highlighting this fact:
+
+[[[ code('569e075fae') ]]]
 
 This syntax is also special to RST. You can make tips and notes the same way.
 

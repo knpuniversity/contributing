@@ -70,9 +70,15 @@ git remote add weaverryan git@github.com:weaverryan/recipes.git
 ```
 
 Back in the editor, I'll close a few files. Then open
-`twig/extensions/1.0/config/packages/twig_extensions.yaml`. Add the comment:
+`twig/extensions/1.0/config/packages/twig_extensions.yaml`:
+
+[[[ code('e4a1fb51d3') ]]]
+
+Add the comment:
 
 > Uncomment any lines below to activate that Twig extension
+
+[[[ code('3337763c0d') ]]]
 
 Brilliant! Let's commit this! The recipes repository is a bit unique: it *only*
 has a `master` branch. So, we'll create our new branch from it:
@@ -112,9 +118,14 @@ Another spot says "View deployment". Open that in a new tab. This is *really* co
 The Flex server just "deployed" our recipe. And we can temporarily change our Flex
 "endpoints" to *use* our new recipe... even though it's not merged yet!
 
-Copy the `export` line, find a terminal and paste. We just set an environment
-variable on this terminal tab only. To test the recipe, let's just move into
-one of our projects, like `triage_issue_27901`.
+Copy the `export` line, find a terminal and paste:
+
+```terminal-silent
+export SYMFONY_ENDPOINT=https://symfony.sh/r/github.com/symfony/recipes/449
+```
+
+We just set an environment variable on this terminal tab only. To test the recipe,
+let's just move into one of our projects, like `triage_issue_27901`.
 
 Then run:
 
@@ -129,7 +140,11 @@ Go check it out: open `config/packages/twig_extensions.yaml`. We got it!
 No surprise for *this* small tweak. But for bigger changes, this is *so* useful.
 
 When you're done playing with things, be sure to unset that variable so that you
-once again use the *real* Symfony endpoint.
+once again use the *real* Symfony endpoint:
+
+```terminal-silent
+unset SYMFONY_ENDPOINT
+```
 
 ## See you on GitHub!
 
