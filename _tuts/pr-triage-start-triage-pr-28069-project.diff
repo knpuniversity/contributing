@@ -74,10 +74,10 @@ index 0000000..5187d02
 +$application->run($input);
 diff --git a/triage_pr_28069/composer.json b/triage_pr_28069/composer.json
 new file mode 100644
-index 0000000..b33164f
+index 0000000..e8b2e8f
 --- /dev/null
 +++ b/triage_pr_28069/composer.json
-@@ -0,0 +1,61 @@
+@@ -0,0 +1,60 @@
 +{
 +    "type": "project",
 +    "license": "proprietary",
@@ -88,7 +88,6 @@ index 0000000..b33164f
 +        "ext-iconv": "*",
 +        "symfony/console": "^4.2",
 +        "symfony/flex": "^1.0",
-+        "symfony/force-lowest": "=4.2",
 +        "symfony/framework-bundle": "^4.2",
 +        "symfony/yaml": "^4.2"
 +    },
@@ -141,17 +140,17 @@ index 0000000..b33164f
 +}
 diff --git a/triage_pr_28069/composer.lock b/triage_pr_28069/composer.lock
 new file mode 100644
-index 0000000..a10bccc
+index 0000000..c658525
 --- /dev/null
 +++ b/triage_pr_28069/composer.lock
-@@ -0,0 +1,1403 @@
+@@ -0,0 +1,1417 @@
 +{
 +    "_readme": [
 +        "This file locks the dependencies of your project to a known state",
 +        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
 +        "This file is @generated automatically"
 +    ],
-+    "content-hash": "be0b7c035c955d086e818e3e8f1c717c",
++    "content-hash": "be4257558fc7190a88080fcbbc6ee8ed",
 +    "packages": [
 +        {
 +            "name": "psr/cache",
@@ -897,16 +896,16 @@ index 0000000..a10bccc
 +        },
 +        {
 +            "name": "symfony/flex",
-+            "version": "dev-master",
++            "version": "v1.2.7",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "26be754f42c3c3f21139af2bdd74118ef8f82757"
++                "reference": "8618b243d44bac71e4006062f245d807d84f7a6c"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/26be754f42c3c3f21139af2bdd74118ef8f82757",
-+                "reference": "26be754f42c3c3f21139af2bdd74118ef8f82757",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/8618b243d44bac71e4006062f245d807d84f7a6c",
++                "reference": "8618b243d44bac71e4006062f245d807d84f7a6c",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -915,12 +914,14 @@ index 0000000..a10bccc
 +            },
 +            "require-dev": {
 +                "composer/composer": "^1.0.2",
-+                "symfony/phpunit-bridge": "^3.2.8"
++                "symfony/dotenv": "^3.4|^4.0",
++                "symfony/phpunit-bridge": "^3.4.19|^4.1.8",
++                "symfony/process": "^2.7|^3.0|^4.0"
 +            },
 +            "type": "composer-plugin",
 +            "extra": {
 +                "branch-alias": {
-+                    "dev-master": "1.0-dev"
++                    "dev-master": "1.2-dev"
 +                },
 +                "class": "Symfony\\Flex\\Flex"
 +            },
@@ -940,88 +941,7 @@ index 0000000..a10bccc
 +                }
 +            ],
 +            "description": "Composer plugin for Symfony",
-+            "time": "2018-07-29T16:20:30+00:00"
-+        },
-+        {
-+            "name": "symfony/force-lowest",
-+            "version": "v4.2.0",
-+            "conflict": {
-+                "symfony/asset": "<4.2",
-+                "symfony/browser-kit": "<4.2",
-+                "symfony/cache": "<4.2",
-+                "symfony/config": "<4.2",
-+                "symfony/console": "<4.2",
-+                "symfony/css-selector": "<4.2",
-+                "symfony/debug": "<4.2",
-+                "symfony/debug-bundle": "<4.2",
-+                "symfony/dependency-injection": "<4.2",
-+                "symfony/doctrine-bridge": "<4.2",
-+                "symfony/dom-crawler": "<4.2",
-+                "symfony/dotenv": "<4.2",
-+                "symfony/event-dispatcher": "<4.2",
-+                "symfony/expression-language": "<4.2",
-+                "symfony/filesystem": "<4.2",
-+                "symfony/finder": "<4.2",
-+                "symfony/form": "<4.2",
-+                "symfony/framework-bundle": "<4.2",
-+                "symfony/http-foundation": "<4.2",
-+                "symfony/http-kernel": "<4.2",
-+                "symfony/inflector": "<4.2",
-+                "symfony/intl": "<4.2",
-+                "symfony/ldap": "<4.2",
-+                "symfony/lock": "<4.2",
-+                "symfony/messenger": "<4.2",
-+                "symfony/monolog-bridge": "<4.2",
-+                "symfony/options-resolver": "<4.2",
-+                "symfony/process": "<4.2",
-+                "symfony/property-access": "<4.2",
-+                "symfony/property-info": "<4.2",
-+                "symfony/proxy-manager-bridge": "<4.2",
-+                "symfony/routing": "<4.2",
-+                "symfony/security": "<4.2",
-+                "symfony/security-bundle": "<4.2",
-+                "symfony/security-core": "<4.2",
-+                "symfony/security-csrf": "<4.2",
-+                "symfony/security-guard": "<4.2",
-+                "symfony/security-http": "<4.2",
-+                "symfony/serializer": "<4.2",
-+                "symfony/stopwatch": "<4.2",
-+                "symfony/symfony": "<4.2",
-+                "symfony/templating": "<4.2",
-+                "symfony/translation": "<4.2",
-+                "symfony/twig-bridge": "<4.2",
-+                "symfony/twig-bundle": "<4.2",
-+                "symfony/validator": "<4.2",
-+                "symfony/var-dumper": "<4.2",
-+                "symfony/web-link": "<4.2",
-+                "symfony/web-profiler-bundle": "<4.2",
-+                "symfony/web-server-bundle": "<4.2",
-+                "symfony/workflow": "<4.2",
-+                "symfony/yaml": "<4.2"
-+            },
-+            "type": "metapackage",
-+            "extra": {
-+                "branch-alias": {
-+                    "dev-master": "4.2-dev"
-+                }
-+            },
-+            "notification-url": "https://packagist.org/downloads/",
-+            "license": [
-+                "MIT"
-+            ],
-+            "authors": [
-+                {
-+                    "name": "Fabien Potencier",
-+                    "email": "fabien@symfony.com"
-+                },
-+                {
-+                    "name": "Symfony Community",
-+                    "homepage": "https://symfony.com/contributors"
-+                }
-+            ],
-+            "description": "A metapackage to enforce a lowest version on installed Symfony components",
-+            "homepage": "https://symfony.com",
-+            "time": "2018-05-09T23:41:04+00:00"
++            "time": "2019-06-15T07:15:42+00:00"
 +        },
 +        {
 +            "name": "symfony/framework-bundle",
@@ -1534,6 +1454,99 @@ index 0000000..a10bccc
 +                "environment"
 +            ],
 +            "time": "2018-07-26T11:25:51+00:00"
++        },
++        {
++            "name": "symfony/force-lowest",
++            "version": "v4.2.0",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/force-lowest.git",
++                "reference": "ba8231511b04809e778fd3452c60d2caad93d02b"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/force-lowest/zipball/ba8231511b04809e778fd3452c60d2caad93d02b",
++                "reference": "ba8231511b04809e778fd3452c60d2caad93d02b",
++                "shasum": ""
++            },
++            "conflict": {
++                "symfony/asset": "<4.2",
++                "symfony/browser-kit": "<4.2",
++                "symfony/cache": "<4.2",
++                "symfony/config": "<4.2",
++                "symfony/console": "<4.2",
++                "symfony/css-selector": "<4.2",
++                "symfony/debug": "<4.2",
++                "symfony/debug-bundle": "<4.2",
++                "symfony/dependency-injection": "<4.2",
++                "symfony/doctrine-bridge": "<4.2",
++                "symfony/dom-crawler": "<4.2",
++                "symfony/dotenv": "<4.2",
++                "symfony/event-dispatcher": "<4.2",
++                "symfony/expression-language": "<4.2",
++                "symfony/filesystem": "<4.2",
++                "symfony/finder": "<4.2",
++                "symfony/form": "<4.2",
++                "symfony/framework-bundle": "<4.2",
++                "symfony/http-foundation": "<4.2",
++                "symfony/http-kernel": "<4.2",
++                "symfony/inflector": "<4.2",
++                "symfony/intl": "<4.2",
++                "symfony/ldap": "<4.2",
++                "symfony/lock": "<4.2",
++                "symfony/messenger": "<4.2",
++                "symfony/monolog-bridge": "<4.2",
++                "symfony/options-resolver": "<4.2",
++                "symfony/process": "<4.2",
++                "symfony/property-access": "<4.2",
++                "symfony/property-info": "<4.2",
++                "symfony/proxy-manager-bridge": "<4.2",
++                "symfony/routing": "<4.2",
++                "symfony/security": "<4.2",
++                "symfony/security-bundle": "<4.2",
++                "symfony/security-core": "<4.2",
++                "symfony/security-csrf": "<4.2",
++                "symfony/security-guard": "<4.2",
++                "symfony/security-http": "<4.2",
++                "symfony/serializer": "<4.2",
++                "symfony/stopwatch": "<4.2",
++                "symfony/symfony": "<4.2",
++                "symfony/templating": "<4.2",
++                "symfony/translation": "<4.2",
++                "symfony/twig-bridge": "<4.2",
++                "symfony/twig-bundle": "<4.2",
++                "symfony/validator": "<4.2",
++                "symfony/var-dumper": "<4.2",
++                "symfony/web-link": "<4.2",
++                "symfony/web-profiler-bundle": "<4.2",
++                "symfony/web-server-bundle": "<4.2",
++                "symfony/workflow": "<4.2",
++                "symfony/yaml": "<4.2"
++            },
++            "type": "metapackage",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.2-dev"
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "A metapackage to enforce a lowest version on installed Symfony components",
++            "homepage": "https://symfony.com",
++            "abandoned": "symfony/flex",
++            "time": "2018-05-09T23:41:04+00:00"
 +        }
 +    ],
 +    "aliases": [],

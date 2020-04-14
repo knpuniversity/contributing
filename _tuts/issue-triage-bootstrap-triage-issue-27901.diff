@@ -140,14 +140,14 @@ index 0000000..ca1d7dc
 +}
 diff --git a/triage_issue_27901/composer.lock b/triage_issue_27901/composer.lock
 new file mode 100644
-index 0000000..86bcb8d
+index 0000000..a3001c4
 --- /dev/null
 +++ b/triage_issue_27901/composer.lock
-@@ -0,0 +1,1353 @@
+@@ -0,0 +1,1356 @@
 +{
 +    "_readme": [
 +        "This file locks the dependencies of your project to a known state",
-+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
++        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
 +        "This file is @generated automatically"
 +    ],
 +    "content-hash": "a2849d1c85afb3b1777a12e965c75ff7",
@@ -833,16 +833,16 @@ index 0000000..86bcb8d
 +        },
 +        {
 +            "name": "symfony/flex",
-+            "version": "v1.0.89",
++            "version": "v1.2.7",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/flex.git",
-+                "reference": "26be754f42c3c3f21139af2bdd74118ef8f82757"
++                "reference": "8618b243d44bac71e4006062f245d807d84f7a6c"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/flex/zipball/26be754f42c3c3f21139af2bdd74118ef8f82757",
-+                "reference": "26be754f42c3c3f21139af2bdd74118ef8f82757",
++                "url": "https://api.github.com/repos/symfony/flex/zipball/8618b243d44bac71e4006062f245d807d84f7a6c",
++                "reference": "8618b243d44bac71e4006062f245d807d84f7a6c",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -851,12 +851,14 @@ index 0000000..86bcb8d
 +            },
 +            "require-dev": {
 +                "composer/composer": "^1.0.2",
-+                "symfony/phpunit-bridge": "^3.2.8"
++                "symfony/dotenv": "^3.4|^4.0",
++                "symfony/phpunit-bridge": "^3.4.19|^4.1.8",
++                "symfony/process": "^2.7|^3.0|^4.0"
 +            },
 +            "type": "composer-plugin",
 +            "extra": {
 +                "branch-alias": {
-+                    "dev-master": "1.0-dev"
++                    "dev-master": "1.2-dev"
 +                },
 +                "class": "Symfony\\Flex\\Flex"
 +            },
@@ -876,7 +878,7 @@ index 0000000..86bcb8d
 +                }
 +            ],
 +            "description": "Composer plugin for Symfony",
-+            "time": "2018-07-29T16:20:30+00:00"
++            "time": "2019-06-15T07:15:42+00:00"
 +        },
 +        {
 +            "name": "symfony/framework-bundle",
@@ -1141,12 +1143,12 @@ index 0000000..86bcb8d
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/lts.git",
-+                "reference": "6de50b244bad631a71544b3cc3c8e206c0e5f991"
++                "reference": "c1affae45b78aee036effa1759237e7fa96d4af2"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/lts/zipball/6de50b244bad631a71544b3cc3c8e206c0e5f991",
-+                "reference": "6de50b244bad631a71544b3cc3c8e206c0e5f991",
++                "url": "https://api.github.com/repos/symfony/lts/zipball/c1affae45b78aee036effa1759237e7fa96d4af2",
++                "reference": "c1affae45b78aee036effa1759237e7fa96d4af2",
 +                "shasum": ""
 +            },
 +            "conflict": {
@@ -1226,7 +1228,8 @@ index 0000000..86bcb8d
 +            ],
 +            "description": "Enforces Long Term Supported versions of Symfony components",
 +            "homepage": "https://symfony.com",
-+            "time": "2018-04-03T05:04:16+00:00"
++            "abandoned": "symfony/flex",
++            "time": "2018-10-03T12:03:19+00:00"
 +        },
 +        {
 +            "name": "symfony/polyfill-mbstring",

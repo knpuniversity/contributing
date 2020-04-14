@@ -1,32 +1,129 @@
 diff --git a/triage_pr_28069/composer.json b/triage_pr_28069/composer.json
-index b33164f..846c75d 100644
+index e8b2e8f..1e005c3 100644
 --- a/triage_pr_28069/composer.json
 +++ b/triage_pr_28069/composer.json
-@@ -10,6 +10,7 @@
+@@ -9,6 +9,7 @@
+         "symfony/console": "^4.2",
          "symfony/flex": "^1.0",
-         "symfony/force-lowest": "=4.2",
          "symfony/framework-bundle": "^4.2",
 +        "symfony/validator": "^4.2",
          "symfony/yaml": "^4.2"
      },
      "require-dev": {
 diff --git a/triage_pr_28069/composer.lock b/triage_pr_28069/composer.lock
-index a10bccc..5f65356 100644
+index c658525..8dfb13c 100644
 --- a/triage_pr_28069/composer.lock
 +++ b/triage_pr_28069/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "be0b7c035c955d086e818e3e8f1c717c",
-+    "content-hash": "0184a1e6653984a148db84f7726aff02",
+-    "content-hash": "be4257558fc7190a88080fcbbc6ee8ed",
++    "content-hash": "aa74d087d2a15bf3c14c0f44dd978842",
      "packages": [
          {
              "name": "psr/cache",
-@@ -1270,6 +1270,162 @@
+@@ -1191,6 +1191,95 @@
              ],
              "time": "2018-08-07T09:35:17+00:00"
          },
++        {
++            "name": "symfony/validator",
++            "version": "4.2.x-dev",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/validator.git",
++                "reference": "7b4485db55b7ea1a0d13d126c2781313017f815f"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/validator/zipball/7b4485db55b7ea1a0d13d126c2781313017f815f",
++                "reference": "7b4485db55b7ea1a0d13d126c2781313017f815f",
++                "shasum": ""
++            },
++            "require": {
++                "php": "^7.1.3",
++                "symfony/contracts": "^1.0.2",
++                "symfony/polyfill-ctype": "~1.8",
++                "symfony/polyfill-mbstring": "~1.0"
++            },
++            "conflict": {
++                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
++                "symfony/dependency-injection": "<3.4",
++                "symfony/http-kernel": "<3.4",
++                "symfony/intl": "<4.1",
++                "symfony/translation": "<4.2",
++                "symfony/yaml": "<3.4"
++            },
++            "require-dev": {
++                "doctrine/annotations": "~1.0",
++                "doctrine/cache": "~1.0",
++                "egulias/email-validator": "^1.2.8|~2.0",
++                "symfony/cache": "~3.4|~4.0",
++                "symfony/config": "~3.4|~4.0",
++                "symfony/dependency-injection": "~3.4|~4.0",
++                "symfony/expression-language": "~3.4|~4.0",
++                "symfony/http-foundation": "~4.1",
++                "symfony/http-kernel": "~3.4|~4.0",
++                "symfony/intl": "~4.1",
++                "symfony/property-access": "~3.4|~4.0",
++                "symfony/translation": "~4.2",
++                "symfony/var-dumper": "~3.4|~4.0",
++                "symfony/yaml": "~3.4|~4.0"
++            },
++            "suggest": {
++                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
++                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
++                "egulias/email-validator": "Strict (RFC compliant) email validation",
++                "psr/cache-implementation": "For using the metadata cache.",
++                "symfony/config": "",
++                "symfony/expression-language": "For using the Expression validator",
++                "symfony/http-foundation": "",
++                "symfony/intl": "",
++                "symfony/property-access": "For accessing properties within comparison constraints",
++                "symfony/translation": "For translating validation errors.",
++                "symfony/yaml": ""
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-master": "4.2-dev"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\Validator\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony Validator Component",
++            "homepage": "https://symfony.com",
++            "time": "2019-07-19T12:05:51+00:00"
++        },
+         {
+             "name": "symfony/yaml",
+             "version": "dev-master",
+@@ -1401,6 +1490,75 @@
+             "homepage": "https://symfony.com",
+             "abandoned": "symfony/flex",
+             "time": "2018-05-09T23:41:04+00:00"
++        },
 +        {
 +            "name": "symfony/translation",
 +            "version": "dev-master",
@@ -95,97 +192,9 @@ index a10bccc..5f65356 100644
 +            "description": "Symfony Translation Component",
 +            "homepage": "https://symfony.com",
 +            "time": "2018-08-08T07:59:30+00:00"
-+        },
-+        {
-+            "name": "symfony/validator",
-+            "version": "dev-master",
-+            "source": {
-+                "type": "git",
-+                "url": "https://github.com/symfony/validator.git",
-+                "reference": "e7ca24e192fe5e36e86e01dde5b9a27b5078594e"
-+            },
-+            "dist": {
-+                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/validator/zipball/e7ca24e192fe5e36e86e01dde5b9a27b5078594e",
-+                "reference": "e7ca24e192fe5e36e86e01dde5b9a27b5078594e",
-+                "shasum": ""
-+            },
-+            "require": {
-+                "php": "^7.1.3",
-+                "symfony/contracts": "^1.0",
-+                "symfony/polyfill-ctype": "~1.8",
-+                "symfony/polyfill-mbstring": "~1.0",
-+                "symfony/translation": "~3.4|~4.0"
-+            },
-+            "conflict": {
-+                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
-+                "symfony/dependency-injection": "<3.4",
-+                "symfony/http-kernel": "<3.4",
-+                "symfony/intl": "<4.1",
-+                "symfony/yaml": "<3.4"
-+            },
-+            "require-dev": {
-+                "doctrine/annotations": "~1.0",
-+                "doctrine/cache": "~1.0",
-+                "egulias/email-validator": "^1.2.8|~2.0",
-+                "symfony/cache": "~3.4|~4.0",
-+                "symfony/config": "~3.4|~4.0",
-+                "symfony/dependency-injection": "~3.4|~4.0",
-+                "symfony/expression-language": "~3.4|~4.0",
-+                "symfony/http-foundation": "~4.1",
-+                "symfony/http-kernel": "~3.4|~4.0",
-+                "symfony/intl": "~4.1",
-+                "symfony/property-access": "~3.4|~4.0",
-+                "symfony/var-dumper": "~3.4|~4.0",
-+                "symfony/yaml": "~3.4|~4.0"
-+            },
-+            "suggest": {
-+                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
-+                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
-+                "egulias/email-validator": "Strict (RFC compliant) email validation",
-+                "psr/cache-implementation": "For using the metadata cache.",
-+                "symfony/config": "",
-+                "symfony/expression-language": "For using the Expression validator",
-+                "symfony/http-foundation": "",
-+                "symfony/intl": "",
-+                "symfony/property-access": "For accessing properties within comparison constraints",
-+                "symfony/yaml": ""
-+            },
-+            "type": "library",
-+            "extra": {
-+                "branch-alias": {
-+                    "dev-master": "4.2-dev"
-+                }
-+            },
-+            "autoload": {
-+                "psr-4": {
-+                    "Symfony\\Component\\Validator\\": ""
-+                },
-+                "exclude-from-classmap": [
-+                    "/Tests/"
-+                ]
-+            },
-+            "notification-url": "https://packagist.org/downloads/",
-+            "license": [
-+                "MIT"
-+            ],
-+            "authors": [
-+                {
-+                    "name": "Fabien Potencier",
-+                    "email": "fabien@symfony.com"
-+                },
-+                {
-+                    "name": "Symfony Community",
-+                    "homepage": "https://symfony.com/contributors"
-+                }
-+            ],
-+            "description": "Symfony Validator Component",
-+            "homepage": "https://symfony.com",
-+            "time": "2018-08-07T09:35:17+00:00"
-+        },
-         {
-             "name": "symfony/yaml",
-             "version": "dev-master",
+         }
+     ],
+     "aliases": [],
 diff --git a/triage_pr_28069/config/packages/translation.yaml b/triage_pr_28069/config/packages/translation.yaml
 new file mode 100644
 index 0000000..1edfbe2
